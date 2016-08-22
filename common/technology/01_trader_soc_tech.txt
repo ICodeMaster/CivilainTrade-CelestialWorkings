@@ -1,0 +1,205 @@
+##################
+### TECH COSTS ###
+##################
+#If you change any of these, use replace in files so the values are the same across all files
+
+@tier1cost1 = 240
+@tier1cost2 = 360
+@tier1cost3 = 480
+@tier1cost4 = 600
+
+@tier2cost1 = 900
+@tier2cost2 = 1200
+@tier2cost3 = 1500
+@tier2cost4 = 1800
+
+@tier3cost1 = 2320
+@tier3cost2 = 2840
+@tier3cost3 = 3360
+@tier3cost4 = 3880
+
+####################
+### TECH WEIGHTS ###
+####################
+
+@tier1weight1 = 100
+@tier1weight2 = 95
+@tier1weight3 = 90
+@tier1weight4 = 85
+
+@tier2weight1 = 75
+@tier2weight2 = 70
+@tier2weight3 = 65
+@tier2weight4 = 60
+
+@tier3weight1 = 50
+@tier3weight2 = 45
+@tier3weight3 = 40
+@tier3weight4 = 35
+
+# ##################
+# Basic army
+# ##################
+
+tech_defense_army = {
+	cost = 0
+	area = society
+	start_tech = yes
+	category = { military_theory }
+	tier = 0
+	
+	## unlock defense army, militia and basic attachments
+}
+
+# ##################
+# Farming
+# ##################
+
+#Eco Simulation
+tech_trading_module_1 = {
+	cost = @tier1cost2
+	area = society
+	tier = 1
+	category = { good_trading }
+	weight = @tier1weight4
+	feature_flags = { trade_station_1 }
+	weight_modifier = {
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_pacifist
+			has_government = moral_democracy
+			has_government = peaceful_bureaucracy
+			has_government = enlightened_monarchy
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_good_trading"
+			}
+		}
+	}	
+}
+
+tech_trading_module_2 = {
+	cost = @tier2cost2
+	area = society
+	tier = 2
+	category = { good_trading }
+	weight = @tier2weight2
+	feature_flags = { trade_station_2 }
+	weight_modifier = {
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_pacifist
+			has_government = moral_democracy
+			has_government = peaceful_bureaucracy
+			has_government = enlightened_monarchy
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_good_trading"
+			}
+		}
+	}	
+}
+
+tech_trading_module_3 = {
+	cost = @tier3cost2
+	area = society
+	tier = 3
+	category = { good_trading }
+	weight = @tier3weight2
+	feature_flags = { trade_station_3 }
+	weight_modifier = {
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_pacifist
+			has_government = moral_democracy
+			has_government = peaceful_bureaucracy
+			has_government = enlightened_monarchy
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_good_trading"
+			}
+		}
+	}	
+}
+
+tech_trading_module_4 = {
+	cost = @tier4cost2
+	area = society
+	tier = 4
+	category = { good_trading }
+	weight = @tier4weight2
+	feature_flags = { trade_station_4 }
+	weight_modifier = {
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_pacifist
+			has_government = moral_democracy
+			has_government = peaceful_bureaucracy
+			has_government = enlightened_monarchy
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_good_trading"
+			}
+		}
+	}	
+}
+
+tech_trading_module_5 = {
+	cost = @tier4cost4
+	area = society
+	tier = 4
+	category = { good_trading }
+	weight = @tier4weight4
+	feature_flags = { trade_station_5 }
+	weight_modifier = {
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 2
+			OR = {
+			has_ethic = ethic_fanatic_pacifist
+			has_government = moral_democracy
+			has_government = peaceful_bureaucracy
+			has_government = enlightened_monarchy
+			}
+
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_good_trading"
+			}
+		}
+	}	
+}

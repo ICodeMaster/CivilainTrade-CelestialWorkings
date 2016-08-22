@@ -1,0 +1,675 @@
+#################################
+#
+# Trader Events
+# by ICodeMaster
+#
+#################################
+
+namespace = tradeaction
+############ Pirate Initalizaion ##############
+event = {
+	id = tradeaction.90
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+				create_country = {
+				name = "Caravan Raiders"
+				type = piratetrader 
+				species = random
+				auto_delete = no
+				government = enlightened_monarchy
+				flag = {
+					icon = {
+						category = "pointy"
+						file = "flag_pointy_14.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "circle.dds"
+					}
+					colors={
+						"red"
+						"black"
+						"null"
+						"null"
+					}
+				}
+			}
+			last_created_country = {
+				set_country_flag = raider_country_flag
+				save_global_event_target_as = raider_country
+			}
+			every_country = {
+				limit = {
+					is_country_type = default
+				}
+				establish_communications_no_message = last_created_country
+			}
+	}
+}
+
+##### Trade Initalizaion #######
+country_event = {
+	id = tradeaction.00
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { exists = event_target:trader_country }
+	}
+
+	immediate = {
+			create_country = {
+				name = "Trader Guild"
+				type = tradercountry
+				species = random
+				auto_delete = no
+				government = enlightened_monarchy
+				flag = {
+					icon = {
+						category = "spherical"
+						file = "flag_spherical_8.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "circle.dds"
+					}
+					colors={
+						"purple"
+						"indigo"
+						"null"
+						"null"
+					}
+				}
+			}
+			last_created_country = {
+				set_country_flag = trader_country_flag
+				save_global_event_target_as = trader_country
+			}
+			every_country = {
+				limit = {
+					is_country_type = default
+				}
+				establish_communications_no_message = last_created_country
+			}
+			random_system = {
+				event_target:trader_country = {
+					create_fleet = {name = "Trading HQ"}
+					last_created_fleet = {
+						set_owner = prev
+						set_fleet_stance = passive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 50
+						create_ship = {
+							name = "Caravan_Gaurd"
+							design = "Caravan_Gaurd"
+						}
+						set_location = prevprev
+					}
+						
+					}
+				}
+			}
+	option = {
+		name = ok
+	}
+}
+##### Picking Spawn #####
+country_event = {
+	id = tradeaction.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+	
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = { 
+				AND = {
+					has_spaceport = yes
+					OR = {
+						AND = {
+							has_spaceport_module = trade_station_1
+							NOT = {
+								has_planet_flag = has_tier_1
+							}
+						}
+						AND = {
+							has_spaceport_module = trade_station_2
+							NOT = {
+								has_planet_flag = has_tier_2
+							}
+						}
+						AND = {
+							has_spaceport_module = trade_station_3
+							NOT = {
+								has_planet_flag = has_tier_3
+							}
+						}
+						AND = {
+							has_spaceport_module = trade_station_4
+							NOT = {
+								has_planet_flag = has_tier_4
+							}
+						}
+						AND = {
+							has_spaceport_module = trade_station_5
+							NOT = {
+								has_planet_flag = has_tier_5
+							}
+						}
+				}
+				}
+			}
+			planet_event = {
+				id = tradeaction.3
+				days = 1
+			}
+		}
+	}
+	option = {
+		name = ok
+	}
+}
+#### Fleet Initialization #####
+planet_event = {
+	id = tradeaction.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		if = {
+			limit = {
+				planet = {
+					OR = {
+						has_spaceport_module = trade_station_1
+						has_spaceport_module = trade_station_2
+						has_spaceport_module = trade_station_3
+						has_spaceport_module = trade_station_4
+						has_spaceport_module = trade_station_5
+					}
+				}
+			}
+		}
+		## and allows free trade
+	}
+
+	immediate = {
+			ROOT = {
+				set_timed_planet_flag = {
+					flag = trader_depleted_flag
+					days = 100
+				}
+			}
+			create_fleet = { name = "Trading Fleet" }
+			last_created_fleet = {
+					#set_owner = event_target:trader_country
+					set_owner = from
+					set_fleet_stance = passive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 50
+					create_ship = {
+						name = "Barge"
+						design = "Trading Barge"
+					}
+					set_location = ROOT
+					set_formation_scale = 1.6
+					##### TIER 5 ######
+					if = {
+						limit = {
+							AND = {
+								ROOT = { has_spaceport_module = trade_station_5 }
+								NOT  = {
+									ROOT = {
+										has_planet_flag = has_tier_5
+									}
+								}
+							}
+						}
+						set_fleet_flag = tier_5
+						ROOT = { set_planet_flag = has_tier_5 }
+						##### TIER 4 #####
+						else = {
+							if = {
+							limit = {
+								AND = {
+									ROOT = { has_spaceport_module = trade_station_4 }
+									NOT  = {
+										ROOT = {
+											has_planet_flag = has_tier_4
+										}
+									}
+								}
+							}
+							set_fleet_flag = tier_4
+							ROOT = { set_planet_flag = has_tier_4 }
+							#### TIER 3 ####
+							else = {
+								if = {
+									limit = {
+										AND = {
+											ROOT = { has_spaceport_module = trade_station_3 }
+											NOT  = {
+												ROOT = {
+													has_planet_flag = has_tier_3
+												}
+											}
+										}
+									}
+									set_fleet_flag = tier_3
+									ROOT = { set_planet_flag = has_tier_3 }
+									###### TIER 2 ########
+									else = {
+										if = {
+											limit = {
+												AND = {
+													ROOT = { has_spaceport_module = trade_station_2 }
+													NOT  = {
+														ROOT = {
+															has_planet_flag = has_tier_2
+														}
+													}
+												}
+											}
+											set_fleet_flag = tier_2
+											ROOT = { set_planet_flag = has_tier_2 }
+											##### TIER 1 #####
+											else = {
+												if = {
+													limit = {
+														AND = {
+															ROOT = { has_spaceport_module = trade_station_1 }
+															NOT  = {
+																ROOT = {
+																	has_planet_flag = has_tier_1
+																}
+															}
+														}
+													}
+													set_fleet_flag = tier_1
+													ROOT = { set_planet_flag = has_tier_1 }
+												}
+											}
+										}
+									}
+							
+								}
+							}
+							}
+						}
+					}
+					set_event_locked = yes
+				}
+			last_created_fleet = { fleet_event = { id = tradeaction.52 days = 1 } }
+			last_created_fleet = { fleet_event = { id = tradeaction.4 days = 4 } }
+			
+	}
+	option = {
+		name = ok
+	}
+}
+#### Intranation Fleet Handler #####
+fleet_event = {
+	id = tradeaction.4
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+				NOT = {
+					has_fleet_flag = trader_in_transit
+				}
+	}
+	
+	immediate = {
+		clear_fleet_actions = this
+		ORBIT = {
+			save_event_target_as = starting_port
+		}
+			SPACE_OWNER = {
+				random_owned_planet = {
+					limit = {
+						AND = {
+							has_spaceport = yes
+							has_spaceport_module = trade_station_1
+							NOT = {has_planet_flag = trader_depleted_flag }
+							NOT = {
+								distance = {
+									source = ROOT
+									min_distance = 1
+								}
+							
+							}
+						}
+					}
+					SOLAR_SYSTEM  = {
+					save_event_target_as = trader_destination_system
+					}
+					save_event_target_as = trader_destination_planet
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+					exists = event_target:trader_destination_planet
+					event_target:trader_destination_planet = {
+					NOT = {
+						has_planet_flag = trader_depleted_flag 
+						is_planet = event_target:starting_port
+					}
+					}
+					}
+				}
+				clear_fleet_actions = this
+				queue_actions = {
+					effect = {
+						id = tradeaction.4.fleetflag.1
+						set_fleet_flag = trader_in_transit
+						fleet_event = { id = t_pirate.1 days = 1 }
+						set_owner = event_target:trader_country
+						set_event_locked = no
+					}
+					move_to = event_target:trader_destination_system
+					orbit_planet = event_target:trader_destination_planet
+					wait = 10
+					effect = {
+						id = tradeaction.4.delievery.1
+						ROOT = {
+							set_owner = space_owner
+							set_event_locked = yes
+							event_target:trader_destination_planet = {
+								if = {
+									limit = {
+											has_spaceport_module = trade_station_5
+									}
+									set_timed_planet_flag = {
+										flag = trader_depleted_flag
+										days = 100
+									}
+								}
+								
+							}
+						}
+					}
+					wait = 15
+					effect = {
+						id= tradeaction.4.newport.1
+						remove_fleet_flag = trader_in_transit
+						fleet_event = { id = tradeaction.4 days = 3}
+					}
+				}
+				else = {
+					clear_fleet_actions = this
+					queue_actions = {
+					wait = 4
+					effect = {
+						id= tradeaction.4.newport.2
+					fleet_event = { id = tradeaction.4 days = 3}
+					}
+				}
+			}
+			break = yes
+		}
+	}
+}
+##### Updates Ship Fleet Sizes ######
+fleet_event = {
+	id = tradeaction.52
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		set_variable = {
+			which = "ship_count"
+			value = 0
+		}
+		if = {
+			limit = {
+				has_fleet_flag = tier_1
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = "ship_count"
+						value < 3
+					}
+				}
+				create_ship = {
+					name = "Caravan_Gaurd"
+					design = Caravan_Gaurd
+				}
+				change_variable = {
+					which = "ship_count"
+					value = 1
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_fleet_flag = tier_2
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = "ship_count"
+						value < 4
+					}
+				}
+				create_ship = {
+					name = "Caravan_Gaurd"
+					design = Caravan_Gaurd
+				}
+				change_variable = {
+					which = "ship_count"
+					value = 1
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_fleet_flag = tier_3
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = "ship_count"
+						value < 5
+					}
+				}
+				create_ship = {
+					name = "Caravan_Gaurd"
+					design = Caravan_Gaurd
+				}
+				change_variable = {
+					which = "ship_count"
+					value = 1
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_fleet_flag = tier_4
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = "ship_count"
+						value < 6
+					}
+				}
+				create_ship = {
+					name = "Caravan_Gaurd"
+					design = Caravan_Gaurd
+				}
+				change_variable = {
+					which = "ship_count"
+					value = 1
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_fleet_flag = tier_5
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = "ship_count"
+						value < 7
+					}
+				}
+				create_ship = {
+					name = "Caravan_Gaurd"
+					design = Caravan_Gaurd
+				}
+				change_variable = {
+					which = "ship_count"
+					value = 1
+				}
+			}
+		}
+	}
+	
+}
+fleet_event = {
+	id = tradeaction.51
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				count_ships = {
+					limit = { is_ship_size = nomad_destroyer}
+					count < "ship_count"
+				}
+			}
+			create_ship = {
+				name = "Caravan_Gaurd"
+				design = Caravan_Gaurd
+			}
+		}
+	}
+}
+###### REFRESHES FLEETS ##########
+country_event = {
+	id = tradeaction.60
+	hide_window = yes
+	is_triggered_only = yes
+
+	
+	immediate = {
+		#### calling variables ######
+		set_variable = {
+			which = "fleet_capacity"
+			value = 0
+		}		
+		every_owned_planet = {
+			limit = {
+				OR = {
+				has_spaceport_module = trade_station_1
+				has_spaceport_module = trade_station_2
+				has_spaceport_module = trade_station_3
+				has_spaceport_module = trade_station_4
+				has_spaceport_module = trade_station_5
+				}
+			}
+			ROOT = {
+			change_variable = {
+				which = "fleet_capacity"
+				value = 1 
+			}
+			}
+		}
+		
+		while = {
+			limit = {
+				check_variable = {
+					which = "fleet_capacity"
+					value > 0
+				}
+			}
+			event_target:trader_country = {
+			random_owned_fleet = {
+				limit = {
+						SPACE_OWNER = {
+							is_same_empire = ROOT
+						}
+				}
+				if = {
+					limit = {
+						AND = {
+							exists = this
+							NOT = { has_fleet_flag = count_checked }
+						}
+					}
+					ROOT = { change_variable = {
+						which = "fleet_capacity"
+						value = -1
+					}}
+					set_fleet_flag = count_checked 
+					else = {
+					ROOT = {
+						country_event = { id = tradeaction.1 days = 15 random = 35 }
+						change_variable = {
+							which = "fleet_capacity"
+							value = -1
+						}
+					}
+					}
+				}
+			}
+			}
+		}
+		event_target:trader_country = {
+			every_owned_fleet = {
+				limit = {
+					SPACE_OWNER = {
+						is_same_empire = ROOT
+					}
+				}
+				remove_fleet_flag = count_checked
+			}
+		}
+		#### Counting my spaceports ######
+	}	
+}
+
+country_event = {
+	id = tradeaction.91
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		FROMFROM = {
+			is_ship_size = trader_barge
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				FROMFROM = {
+					fleet = {
+						has_fleet_flag = tier_1
+					}
+				}
+			}
+			this = {
+				add_energy = -75   
+				add_minerals = -100  
+				country_event = { id = tradeaction.100 }
+			}
+		}
+	}
+}	
+
+country_event = {
+	id = tradeaction.100
+	is_triggered_only = yes
+	
+	option = {
+		name = ok
+		custom_tooltip = tradeaction.100.1
+	}
+	
+}

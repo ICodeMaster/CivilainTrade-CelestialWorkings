@@ -1,0 +1,8 @@
+
+
+active_management = {
+	trigger = {
+		has_edict = encourage_free_thought
+	}
+	tile_resource_energy_mult = 2
+}

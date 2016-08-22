@@ -1,0 +1,19 @@
+# No scope, like on_game_start
+on_yearly_pulse = {
+
+}
+on_press_begin = {
+	events = {
+		tradeaction.00
+		tradeaction.90
+	}
+}
+# This = owner of ship 1 (destroyed)
+# From = owner of ship 2 (combatant)
+# FromFrom = ship 1
+# FromFromFrom = ship 2
+on_ship_destroyed_victim = {
+	events = {
+		tradeaction.91
+	}
+}
