@@ -1,4 +1,4 @@
-name="Celestial Workings - Civilian Trade"
+name="CelWorks Trade Beta"
 path="mod/CivilainTrade-CelestialWorkings"
 tags={
 	"Gameplay"

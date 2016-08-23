@@ -29,8 +29,8 @@ fleet_event = {
 			}
 			save_global_event_target_as = raider_country
 		}
-		#random = {
-			#chance = 35
+		random = {
+			chance = 35
 			create_fleet = {
 				name = "Caravan Raiders"
 			}
@@ -119,7 +119,7 @@ fleet_event = {
 			}
 			last_created_fleet = {fleet_event = { id = t_pirate.10 days = 2 random = 2 }}
 			set_fleet_flag = hunted
-		#}
+		}
 	}
 }
 
@@ -128,29 +128,21 @@ fleet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
-		random_system = {
-			save_event_target_as = hunted_fleet_system
+		SOLAR_SYSTEM = {
+			random_neighbor_system = {
+				limit = {
+					space_owner = {
+						is_same_empire = solar_system.space_owner
+					}
+				}
+				save_event_target_as = hunted_fleet_system
+			}
 		}
 		queue_actions = {
 			wait = 3
 			move_to = event_target:hunted_fleet_system
-			effect = {
-				id = recalc_fleet.1
-				random_system = {
-				limit = {
-				random_fleet_in_system = {
-					limit = {
-						has_fleet_flag = hunted
-					}
-					exsists = this
-				}
-			}
-			save_event_target_as = hunted_fleet_system
-		}	
-			}
-			move_to = event_target:hunted_fleet_system
 		}
-		fleet_event = { id = t_pirate.10 days = 30 random = 3 }
+		fleet_event = { id = t_pirate.10 days = 20 random = 3 }
 		
 	}
 }

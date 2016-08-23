@@ -40,12 +40,10 @@ trade_station_1 = {
 		energy = 10
 		minerals = 6
 	}
-	pop_modifier = {
-		pop_ethic_shift = 0.10
-	}
 	planet_modifier = {
 		planet_border_mult = 0.1
 		planet_migration_all_pull = 0.5
+		pop_ethic_shift = 0.10
 	}
 	ai_weight = {
 		weight = 10
@@ -77,13 +75,10 @@ trade_station_2 = {
 		energy = 17
 		minerals = 15
 	}
-	
-	pop_modifier = {
-		pop_ethic_shift = 0.10
-	}
 	planet_modifier = {
 		planet_border_mult = 0.6
 		planet_migration_all_pull = 0.5
+		pop_ethic_shift = 0.10
 	}
 	
 	
@@ -118,12 +113,10 @@ trade_station_3 = {
 		minerals = 23
 	}
 	
-	pop_modifier = {
-		pop_ethic_shift = 0.10
-	}
 	planet_modifier = {
 		planet_border_mult = 1.1
 		planet_migration_all_pull = 0.5
+		pop_ethic_shift = 0.10
 	}
 	
 	ai_weight = {
@@ -157,12 +150,10 @@ trade_station_4 = {
 		minerals = 30
 	}
 	
-	pop_modifier = {
-		pop_ethic_shift = 0.10
-	}
 	planet_modifier = {
 		planet_border_mult = 1.6
 		planet_migration_all_pull = 0.5
+		pop_ethic_shift = 0.10
 	}
 	
 	ai_weight = {
@@ -195,14 +186,10 @@ trade_station_5 = {
 		energy = 56
 		minerals = 40
 	}
-	
-	pop_modifier = {
-		pop_ethic_shift = 0.10
-	}
 	planet_modifier = {
 		planet_border_mult = 2.5
 		planet_migration_all_pull = 0.5
-		active_management
+		pop_ethic_shift = 0.10
 	}
 	
 	ai_weight = {

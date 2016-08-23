@@ -40,17 +40,6 @@
 # ##################
 # Basic army
 # ##################
-
-tech_defense_army = {
-	cost = 0
-	area = society
-	start_tech = yes
-	category = { military_theory }
-	tier = 0
-	
-	## unlock defense army, militia and basic attachments
-}
-
 # ##################
 # Farming
 # ##################
@@ -144,11 +133,13 @@ tech_trading_module_3 = {
 }
 
 tech_trading_module_4 = {
-	cost = @tier4cost2
+	cost = 4000
 	area = society
 	tier = 4
+	
 	category = { good_trading }
-	weight = @tier4weight2
+	
+	weight = 30
 	feature_flags = { trade_station_4 }
 	weight_modifier = {
 		modifier = {
@@ -173,11 +164,13 @@ tech_trading_module_4 = {
 }
 
 tech_trading_module_5 = {
-	cost = @tier4cost4
+	cost = 4200
 	area = society
 	tier = 4
 	category = { good_trading }
-	weight = @tier4weight4
+	
+	weight = 30
+	
 	feature_flags = { trade_station_5 }
 	weight_modifier = {
 		modifier = {
