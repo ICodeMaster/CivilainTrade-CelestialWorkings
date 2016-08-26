@@ -3,6 +3,9 @@
     trader_barge:0 "Trading Barge"
     trader_barge_desc:0 "Barge commonly used to trade goods in space"
     
+    trading_market:0 "Trading Marketplace"
+    tradeing_market_desc:0 "The marketplace where trading fleets deposite thier wares."
+    
     sm_trade_station_1:0 "Level 1 Trading Platform"
     sm_trade_station_2:0 "Level 2 Trading Platform"
     sm_trade_station_3:0 "Level 3 Trading Platform"

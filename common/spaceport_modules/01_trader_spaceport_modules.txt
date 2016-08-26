@@ -37,13 +37,13 @@ trade_station_1 = {
 	produced_resources = {
 		engineering_research = 1
 		society_research = 1
-		energy = 10
-		minerals = 6
+		#energy = 3
+		#minerals = 6
 	}
 	planet_modifier = {
 		planet_border_mult = 0.1
 		planet_migration_all_pull = 0.5
-		pop_ethic_shift = 0.10
+		spaceport_ship_build_time_mult = 0.1
 	}
 	ai_weight = {
 		weight = 10
@@ -72,13 +72,13 @@ trade_station_2 = {
 	produced_resources = {
 		engineering_research = 3
 		society_research = 3
-		energy = 17
-		minerals = 15
+		#energy = 17
+		#minerals = 15
 	}
 	planet_modifier = {
 		planet_border_mult = 0.6
 		planet_migration_all_pull = 0.5
-		pop_ethic_shift = 0.10
+		spaceport_ship_build_time_mult = 0.1
 	}
 	
 	
@@ -109,14 +109,14 @@ trade_station_3 = {
 	produced_resources = {
 		engineering_research = 5
 		society_research = 5
-		energy = 26
-		minerals = 23
+		#energy = 26
+		#minerals = 23
 	}
 	
 	planet_modifier = {
 		planet_border_mult = 1.1
 		planet_migration_all_pull = 0.5
-		pop_ethic_shift = 0.10
+		spaceport_ship_build_time_mult = 0.1
 	}
 	
 	ai_weight = {
@@ -146,14 +146,14 @@ trade_station_4 = {
 	produced_resources = {
 		engineering_research = 7
 		society_research = 7
-		energy = 35
-		minerals = 30
+		#energy = 35
+		#minerals = 30
 	}
 	
 	planet_modifier = {
 		planet_border_mult = 1.6
 		planet_migration_all_pull = 0.5
-		pop_ethic_shift = 0.10
+		spaceport_ship_build_time_mult = 0.1
 	}
 	
 	ai_weight = {
@@ -183,13 +183,13 @@ trade_station_5 = {
 	produced_resources = {
 		engineering_research = 10
 		society_research = 10
-		energy = 56
-		minerals = 40
+		#energy = 56
+		#minerals = 40
 	}
 	planet_modifier = {
 		planet_border_mult = 2.5
 		planet_migration_all_pull = 0.5
-		pop_ethic_shift = 0.10
+		spaceport_ship_build_time_mult = 0.1
 	}
 	
 	ai_weight = {

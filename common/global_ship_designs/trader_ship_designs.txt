@@ -75,7 +75,7 @@ ship_design = {
 	ship_size = trader_barge
 	
 	section = {
-		template = "eventship_05_section"
+		template = "Container Section"
 		slot = "mid"
 		
 		component = {

@@ -1,0 +1,23 @@
+country_event = {
+	id = tradeaction.300
+	is_triggered_only = yes
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				#has_spaceport = yes
+			}
+			random_tile = {
+				#limit = {
+					#has_building = trading_market
+				#}
+				pop = {
+					add_modifier = {
+						modifier = "tier_1_delievery_mod"
+						days = 40
+					}
+					#force_faction_evaluation = this
+				}
+			}
+		}
+	}
+}

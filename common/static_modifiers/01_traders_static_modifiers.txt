@@ -1,0 +1,19 @@
+# All global modifiers are here.  They are applied from certain game-features.
+#
+# Effects are fully scriptable here.
+
+# The names can NOT be removed or changed since the code references them
+
+##########################################################################
+# Empire Base
+
+
+##########################################################################
+# Difficulty Modifiers - not applied to vassals of players
+##########################################################################
+
+
+tier_1_delievery_mod = {
+	tile_resource_minerals_mult = 0.5
+	tile_resource_energy_mult = 0.5
+}

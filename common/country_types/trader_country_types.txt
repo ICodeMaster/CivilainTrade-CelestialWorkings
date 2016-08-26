@@ -65,7 +65,8 @@
 
 tradercountry = {
 	show_in_contacts_list = no	
-	
+	orbital_bomardment = no
+	diplomatic_wars = yes
 	ai = {
 		enabled = no
 	}
@@ -75,7 +76,7 @@ tradercountry = {
 		needs_border_access = no
 		generate_borders = no
 		needs_colony = no
-		orbital_bomardment = no
+		hostile_when_attacked = no
 	}	
 	custom_diplomacy = yes
 

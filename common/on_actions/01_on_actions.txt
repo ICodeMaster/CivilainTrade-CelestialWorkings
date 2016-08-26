@@ -1,6 +1,8 @@
 # No scope, like on_game_start
 on_yearly_pulse = {
-
+	events = {
+		tradeaction.101
+	}
 }
 on_press_begin = {
 	events = {
@@ -14,6 +16,6 @@ on_press_begin = {
 # FromFromFrom = ship 2
 on_ship_destroyed_victim = {
 	events = {
-		tradeaction.91
+		#tradeaction.91
 	}
 }

@@ -71,6 +71,13 @@ tech_trading_module_1 = {
 				has_trait = "leader_trait_expertise_good_trading"
 			}
 		}
+		modifier = {
+			factor = 3
+			OR = {
+			has_ethic = ethic_fanatic_capitalism
+			}
+		
+		}
 	}	
 }
 
@@ -100,6 +107,13 @@ tech_trading_module_2 = {
 				has_trait = "leader_trait_expertise_good_trading"
 			}
 		}
+		modifier = {
+			factor = 3
+			OR = {
+			has_ethic = ethic_fanatic_capitalism
+			}
+		
+		}
 	}	
 }
 
@@ -128,6 +142,13 @@ tech_trading_module_3 = {
 				area = society
 				has_trait = "leader_trait_expertise_good_trading"
 			}
+		}
+		modifier = {
+			factor = 3
+			OR = {
+			has_ethic = ethic_fanatic_capitalism
+			}
+		
 		}
 	}	
 }
@@ -160,6 +181,13 @@ tech_trading_module_4 = {
 				has_trait = "leader_trait_expertise_good_trading"
 			}
 		}
+		modifier = {
+			factor = 3
+			OR = {
+			has_ethic = ethic_fanatic_capitalism
+			}
+		
+		}
 	}	
 }
 
@@ -181,6 +209,7 @@ tech_trading_module_5 = {
 			factor = 2
 			OR = {
 			has_ethic = ethic_fanatic_pacifist
+			has_ethic = ethic_capitalism
 			has_government = moral_democracy
 			has_government = peaceful_bureaucracy
 			has_government = enlightened_monarchy
@@ -193,6 +222,13 @@ tech_trading_module_5 = {
 				area = society
 				has_trait = "leader_trait_expertise_good_trading"
 			}
+		}
+		modifier = {
+			factor = 3
+			OR = {
+			has_ethic = ethic_fanatic_capitalism
+			}
+		
 		}
 	}	
 }

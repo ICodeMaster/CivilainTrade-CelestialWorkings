@@ -49,6 +49,22 @@ event = {
 }
 
 ##### Trade Initalizaion #######
+event = {
+	id = tradeaction.101
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_country = {
+			country_event = { id = tradeaction.60 days = 1}
+			country_event = { id = tradeaction.1 days = 1}
+		}
+		event_target:trader_country = {
+			every_owned_fleet = {
+				fleet_event = { id = tradeaction.52 days = 1 }
+			}
+		}
+	}
+}
 country_event = {
 	id = tradeaction.00
 	hide_window = yes
@@ -216,6 +232,7 @@ planet_event = {
 					}
 					set_location = ROOT
 					set_formation_scale = 1.6
+					set_fleet_flag = trader_fleet
 					##### TIER 5 ######
 					if = {
 						limit = {
@@ -324,7 +341,7 @@ fleet_event = {
 	
 	immediate = {
 		clear_fleet_actions = this
-		ORBIT = {
+		SOLAR_SYSTEM = {
 			save_event_target_as = starting_port
 		}
 			SPACE_OWNER = {
@@ -356,7 +373,9 @@ fleet_event = {
 					event_target:trader_destination_planet = {
 					NOT = {
 						has_planet_flag = trader_depleted_flag 
-						is_planet = event_target:starting_port
+						SOLAR_SYSTEM = {
+							is_same_value = event_target:starting_port
+						}
 					}
 					}
 					}
@@ -376,7 +395,7 @@ fleet_event = {
 					effect = {
 						id = tradeaction.4.delievery.1
 						ROOT = {
-							set_owner = space_owner
+							#set_owner = space_owner
 							set_event_locked = yes
 							event_target:trader_destination_planet = {
 								if = {
@@ -386,6 +405,86 @@ fleet_event = {
 									set_timed_planet_flag = {
 										flag = trader_depleted_flag
 										days = 100
+									}
+									set_planet_flag = tier_5_delievery
+									planet_event = { id = tradeaction.300 days = 3 }
+									#ROOT = {
+									#	add_energy = 500
+									#	add_minerals = 250
+									#}
+									else = {
+										if = {
+											limit = {
+												has_spaceport_module = trade_station_4
+											}
+											set_timed_planet_flag = {
+												flag = trader_depleted_flag
+												days = 140
+											}
+											set_planet_flag = tier_4_delievery
+											planet_event = { id = tradeaction.300 days = 3 }
+											#ROOT = {
+											#	add_energy = 400
+											#	add_minerals = 200
+											#}
+											else = {
+												if = {
+													limit = {
+														has_spaceport_module = trade_station_3
+													}
+													set_timed_planet_flag = {
+														flag = trader_depleted_flag
+														days = 190
+													}
+													set_planet_flag = tier_3_delievery
+													planet_event = { id = tradeaction.300 days = 3 }
+													#ROOT = {
+													#	add_energy = 300
+													#	add_minerals = 150
+													#}
+													else = {
+														if = {
+															limit = {
+																has_spaceport_module = trade_station_2
+															}
+															set_timed_planet_flag = {
+															flag = trader_depleted_flag
+															days = 250
+															}
+															set_planet_flag = tier_2_delievery
+															planet_event = { id = tradeaction.300 days = 3 }
+															#ROOT = {
+															#	add_energy = 200
+															#	add_minerals = 100
+															#}
+															else = {
+																if = {
+																	limit = {
+																		has_spaceport_module = trade_station_1
+																	}
+																	set_timed_planet_flag = {
+																		flag = trader_depleted_flag
+																		days = 320
+																	}
+																	set_planet_flag = tier_1_delievery
+																	planet_event = { id = tradeaction.300 days = 3 }
+																	#ROOT = {
+																	#add_energy = 100
+																	#add_minerals = 50
+																	#}
+																	else = {
+																		set_timed_planet_flag = {
+																		flag = trader_depleted_flag
+																		days = 390
+																	}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
 									}
 								}
 								
@@ -418,11 +517,16 @@ fleet_event = {
 	id = tradeaction.52
 	hide_window = yes
 	is_triggered_only = yes
-	
+	trigger = {
+		has_fleet_flag = trader_fleet
+	}
 	immediate = {
 		set_variable = {
 			which = "ship_count"
 			value = 0
+		}
+		while = {
+			
 		}
 		if = {
 			limit = {
@@ -430,18 +534,14 @@ fleet_event = {
 			}
 			while = {
 				limit = {
-					check_variable = {
-						which = "ship_count"
-						value < 3
+					count_ships = {
+						limit = {is_ship_class = shipclass_military}
+						count < 3
 					}
 				}
 				create_ship = {
 					name = "Caravan_Gaurd"
 					design = Caravan_Gaurd
-				}
-				change_variable = {
-					which = "ship_count"
-					value = 1
 				}
 			}
 		}
@@ -451,18 +551,14 @@ fleet_event = {
 			}
 			while = {
 				limit = {
-					check_variable = {
-						which = "ship_count"
-						value < 4
+					count_ships = {
+						limit = {is_ship_class = shipclass_military}
+						count < 4
 					}
 				}
 				create_ship = {
 					name = "Caravan_Gaurd"
 					design = Caravan_Gaurd
-				}
-				change_variable = {
-					which = "ship_count"
-					value = 1
 				}
 			}
 		}
@@ -472,18 +568,14 @@ fleet_event = {
 			}
 			while = {
 				limit = {
-					check_variable = {
-						which = "ship_count"
-						value < 5
+					count_ships = {
+						limit = {is_ship_class = shipclass_military}
+						count < 5
 					}
 				}
 				create_ship = {
 					name = "Caravan_Gaurd"
 					design = Caravan_Gaurd
-				}
-				change_variable = {
-					which = "ship_count"
-					value = 1
 				}
 			}
 		}
@@ -493,18 +585,14 @@ fleet_event = {
 			}
 			while = {
 				limit = {
-					check_variable = {
-						which = "ship_count"
-						value < 6
+					count_ships = {
+						limit = {is_ship_class = shipclass_military}
+						count < 6
 					}
 				}
 				create_ship = {
 					name = "Caravan_Gaurd"
 					design = Caravan_Gaurd
-				}
-				change_variable = {
-					which = "ship_count"
-					value = 1
 				}
 			}
 		}
@@ -514,44 +602,21 @@ fleet_event = {
 			}
 			while = {
 				limit = {
-					check_variable = {
-						which = "ship_count"
-						value < 7
+					count_ships = {
+						limit = {is_ship_class = shipclass_military}
+						count < 7
 					}
 				}
 				create_ship = {
 					name = "Caravan_Gaurd"
 					design = Caravan_Gaurd
 				}
-				change_variable = {
-					which = "ship_count"
-					value = 1
-				}
 			}
 		}
 	}
 	
 }
-fleet_event = {
-	id = tradeaction.51
-	hide_window = yes
-	is_triggered_only = yes
-	
-	immediate = {
-		while = {
-			limit = {
-				count_ships = {
-					limit = { is_ship_size = nomad_destroyer}
-					count < "ship_count"
-				}
-			}
-			create_ship = {
-				name = "Caravan_Gaurd"
-				design = Caravan_Gaurd
-			}
-		}
-	}
-}
+
 ###### REFRESHES FLEETS ##########
 country_event = {
 	id = tradeaction.60
@@ -567,12 +632,15 @@ country_event = {
 		}		
 		every_owned_planet = {
 			limit = {
-				OR = {
-				has_spaceport_module = trade_station_1
-				has_spaceport_module = trade_station_2
-				has_spaceport_module = trade_station_3
-				has_spaceport_module = trade_station_4
-				has_spaceport_module = trade_station_5
+				AND = {
+					has_spaceport = yes
+					OR = {
+					has_spaceport_module = trade_station_1
+					has_spaceport_module = trade_station_2
+					has_spaceport_module = trade_station_3
+					has_spaceport_module = trade_station_4
+					has_spaceport_module = trade_station_5
+					}
 				}
 			}
 			ROOT = {
@@ -593,15 +661,14 @@ country_event = {
 			event_target:trader_country = {
 			random_owned_fleet = {
 				limit = {
-						SPACE_OWNER = {
-							is_same_empire = ROOT
-						}
+					is_inside_border = root
 				}
 				if = {
 					limit = {
 						AND = {
 							exists = this
 							NOT = { has_fleet_flag = count_checked }
+							
 						}
 					}
 					ROOT = { change_variable = {
@@ -625,9 +692,7 @@ country_event = {
 		event_target:trader_country = {
 			every_owned_fleet = {
 				limit = {
-					SPACE_OWNER = {
-						is_same_empire = ROOT
-					}
+					is_inside_border = root
 				}
 				remove_fleet_flag = count_checked
 			}
@@ -656,7 +721,63 @@ country_event = {
 			}
 			this = {
 				add_energy = -75   
-				add_minerals = -100  
+				add_minerals = -40 
+				country_event = { id = tradeaction.100 }
+			}
+		}
+		if = {
+			limit = {
+				FROMFROM = {
+					fleet = {
+						has_fleet_flag = tier_2
+					}
+				}
+			}
+			this = {
+				add_energy = -90
+				add_minerals = -60
+				country_event = { id = tradeaction.100 }
+			}
+		}
+		if = {
+			limit = {
+				FROMFROM = {
+					fleet = {
+						has_fleet_flag = tier_3
+					}
+				}
+			}
+			this = {
+				add_energy = -100
+				add_minerals = -100 
+				country_event = { id = tradeaction.100 }
+			}
+		}
+		if = {
+			limit = {
+				FROMFROM = {
+					fleet = {
+						has_fleet_flag = tier_4
+					}
+				}
+			}
+			this = {
+				add_energy = -300
+				add_minerals = -350
+				country_event = { id = tradeaction.100 }
+			}
+		}
+		if = {
+			limit = {
+				FROMFROM = {
+					fleet = {
+						has_fleet_flag = tier_5
+					}
+				}
+			}
+			this = {
+				add_energy = -500 
+				add_minerals = -550
 				country_event = { id = tradeaction.100 }
 			}
 		}
@@ -672,4 +793,222 @@ country_event = {
 		custom_tooltip = tradeaction.100.1
 	}
 	
+}
+############ MARKETPLACE UPDATE ############
+
+planet_event = {
+	id = tradeaction.300
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		any_tile = {
+			has_building = "trading_market"
+		}
+	}
+	immediate = {
+			random_tile = {
+				limit = {
+					has_building = "trading_market"
+				}
+				if = {
+					limit =  {
+						root = { has_planet_flag = tier_1_delievery }
+					}
+					add_resource = {
+						resource = energy
+						amount = 5
+						replace = no
+					}
+					add_resource = {
+						resource = minerals
+						amount = 3
+						replace = no
+					}
+					root = { remove_planet_flag = tier_1_delievery
+					planet_event = { id = tradeaction.301 days = 150 } }
+				}
+				if = {
+					limit =  {
+						root = { has_planet_flag = tier_2_delievery }
+					}
+					add_resource = {
+						resource = energy
+						amount = 8
+						replace = no
+					}
+					add_resource = {
+						resource = minerals
+						amount = 6
+						replace = no
+					}
+					root = { remove_planet_flag = tier_2_delievery
+					planet_event = { id = tradeaction.302 days = 150 } }
+				}
+				if = {
+					limit =  {
+						root = { has_planet_flag = tier_3_delievery }
+					}
+					add_resource = {
+						resource = energy
+						amount = 12
+						replace = no
+					}
+					add_resource = {
+						resource = minerals
+						amount = 10
+						replace = no
+					}
+					root = { remove_planet_flag = tier_3_delievery
+					planet_event = { id = tradeaction.303 days = 150 } }
+				}
+				if = {
+					limit =  {
+						root = { has_planet_flag = tier_4_delievery }
+					}
+					add_resource = {
+						resource = energy
+						amount = 17
+						replace = no
+					}
+					add_resource = {
+						resource = minerals
+						amount = 15
+						replace = no
+					}
+					root = { remove_planet_flag = tier_4_delievery
+					planet_event = { id = tradeaction.304 days = 150 } }
+				}
+				if = {
+					limit =  {
+						root = { has_planet_flag = tier_5_delievery }
+					}
+					add_resource = {
+						resource = energy
+						amount = 23
+						replace = no
+					}
+					add_resource = {
+						resource = minerals
+						amount = 21
+						replace = no
+					}
+					root = { remove_planet_flag = tier_5_delievery
+					planet_event = { id = tradeaction.305 days = 150 } }
+				}
+			}
+	}
+}
+planet_event = {
+	id = tradeaction.301
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random_tile = {
+			limit = {
+				has_building = "trading_market" 
+			}
+			add_resource = {
+				resource = energy
+				amount = -5
+				replace = no
+			}
+			add_resource = {
+				resource = minerals
+				amount = -3
+				replace = no
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = tradeaction.302
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random_tile = {
+			limit = {
+				has_building = "trading_market" 
+			}
+			add_resource = {
+				resource = energy
+				amount = -8
+				replace = no
+			}
+			add_resource = {
+				resource = minerals
+				amount = -6
+				replace = no
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = tradeaction.303
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random_tile = {
+			limit = {
+				has_building = "trading_market" 
+			}
+			add_resource = {
+				resource = energy
+				amount = -12
+				replace = no
+			}
+			add_resource = {
+				resource = minerals
+				amount = -10
+				replace = no
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = tradeaction.304
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random_tile = {
+			limit = {
+				has_building = "trading_market" 
+			}
+			add_resource = {
+				resource = energy
+				amount = -17
+				replace = no
+			}
+			add_resource = {
+				resource = minerals
+				amount = -15
+				replace = no
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = tradeaction.305
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random_tile = {
+			limit = {
+				has_building = "trading_market" 
+			}
+			add_resource = {
+				resource = energy
+				amount = -23
+				replace = no
+			}
+			add_resource = {
+				resource = minerals
+				amount = -21
+				replace = no
+			}
+		}
+	}
 }

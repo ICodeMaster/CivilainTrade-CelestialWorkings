@@ -7,5 +7,5 @@ tags={
 	"Ships"
 	"Trade"
 }
-picture="celestialworkings-icon-shinyships.jpg"
+picture="celestialworkings-tradding-icon.jpg"
 supported_version="1.2.*"
