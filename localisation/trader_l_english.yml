@@ -1,10 +1,7 @@
 ﻿l_english:
     
-    trader_barge:0 "Trading Barge"
-    trader_barge_desc:0 "Barge commonly used to trade goods in space"
-    
     trading_market:0 "Trading Marketplace"
-    tradeing_market_desc:0 "The marketplace where trading fleets deposite thier wares."
+    trading_market_desc:0 "The marketplace where trading fleets deposite thier wares."
     
     sm_trade_station_1:0 "Level 1 Trading Platform"
     sm_trade_station_2:0 "Level 2 Trading Platform"
@@ -31,8 +28,8 @@
     tech_trading_module_2_desc:0 "Recent advances in our trade networks make trading quicker and more efficent."
     tech_trading_module_3_desc:0 "Extremely groundbreaking work of various technologies to mobolize ships and soldiers are getting applied to civilian-based applications."
     tech_trading_module_4_desc:0 "By making our trading platforms larger and more expansive, we allow more throughput of information and goods."
-    tech_trading_module_5_desc:0 "The pinnacle of modern trading. Fast. Efficient. Perfect."\
+    tech_trading_module_5_desc:0 "The pinnacle of modern trading. Fast. Efficient. Perfect."
     
     tradeaction.100.name:0 "Friendly Caravan Destroyed!"
-    tradeaction.100.desc:0 "A friendly Caravan was destroyed by [From.GetName] and the good that were being transported were lost. Public blame and scorn cause the government to pay out."
+    tradeaction.100.desc:0 "A friendly Caravan was destroyed by [From.GetName] and the goods that were being transported were lost. Public blame and scorn cause the government to pay out."
     
