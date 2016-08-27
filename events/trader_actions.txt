@@ -117,8 +117,8 @@ country_event = {
 						set_aggro_range_measure_from = self
 						set_aggro_range = 50
 						create_ship = {
-							name = "Caravan_Gaurd"
-							design = "Caravan_Gaurd"
+							name = "Protector"
+							design = "Protector"
 						}
 						set_location = prevprev
 					}
@@ -226,9 +226,24 @@ planet_event = {
 					set_fleet_stance = passive
 					set_aggro_range_measure_from = self
 					set_aggro_range = 50
-					create_ship = {
-						name = "Barge"
-						design = "Trading Barge"
+					random_list = {
+						50 = {
+							create_ship = {
+							name = "Trading Tanker"
+							design = "C2"
+							}
+						}
+						50 = {
+							create_ship = {
+							name = "Trading Barge"
+							design = "C1"
+							}
+						
+						}
+					}
+					every_ship = {
+						ship_hitpoints_add = 3000
+						ship_armor_add = 10
 					}
 					set_location = ROOT
 					set_formation_scale = 1.6
@@ -344,20 +359,20 @@ fleet_event = {
 		SOLAR_SYSTEM = {
 			save_event_target_as = starting_port
 		}
-			SPACE_OWNER = {
+			SOLAR_SYSTEM = { 
+				OWNER = {
 				random_owned_planet = {
 					limit = {
 						AND = {
 							has_spaceport = yes
+							OR = {
 							has_spaceport_module = trade_station_1
-							NOT = {has_planet_flag = trader_depleted_flag }
-							NOT = {
-								distance = {
-									source = ROOT
-									min_distance = 1
-								}
-							
+							has_spaceport_module = trade_station_2
+							has_spaceport_module = trade_station_3
+							has_spaceport_module = trade_station_4
+							has_spaceport_module = trade_station_5
 							}
+							NOT = {has_planet_flag = trader_depleted_flag }
 						}
 					}
 					SOLAR_SYSTEM  = {
@@ -365,7 +380,7 @@ fleet_event = {
 					}
 					save_event_target_as = trader_destination_planet
 				}
-			}
+			} }
 			if = {
 				limit = {
 					AND = {
@@ -386,8 +401,8 @@ fleet_event = {
 						id = tradeaction.4.fleetflag.1
 						set_fleet_flag = trader_in_transit
 						fleet_event = { id = t_pirate.1 days = 1 }
-						set_owner = event_target:trader_country
 						set_event_locked = no
+						set_owner = event_target:trader_country
 					}
 					move_to = event_target:trader_destination_system
 					orbit_planet = event_target:trader_destination_planet
@@ -540,8 +555,8 @@ fleet_event = {
 					}
 				}
 				create_ship = {
-					name = "Caravan_Gaurd"
-					design = Caravan_Gaurd
+					name = "Protector"
+					design = Protector
 				}
 			}
 		}
@@ -557,8 +572,8 @@ fleet_event = {
 					}
 				}
 				create_ship = {
-					name = "Caravan_Gaurd"
-					design = Caravan_Gaurd
+					name = "Protector"
+					design = Protector
 				}
 			}
 		}
@@ -574,8 +589,8 @@ fleet_event = {
 					}
 				}
 				create_ship = {
-					name = "Caravan_Gaurd"
-					design = Caravan_Gaurd
+					name = "Protector"
+					design = Protector
 				}
 			}
 		}
@@ -591,8 +606,8 @@ fleet_event = {
 					}
 				}
 				create_ship = {
-					name = "Caravan_Gaurd"
-					design = Caravan_Gaurd
+					name = "Protector"
+					design = Protector
 				}
 			}
 		}
@@ -608,8 +623,8 @@ fleet_event = {
 					}
 				}
 				create_ship = {
-					name = "Caravan_Gaurd"
-					design = Caravan_Gaurd
+					name = "Protector"
+					design = Protector
 				}
 			}
 		}
