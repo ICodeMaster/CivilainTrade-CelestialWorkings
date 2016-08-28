@@ -1,0 +1,220 @@
+namespace = trader_international
+
+event = {
+	id = trader_international.1
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_country = {
+			limit = {
+				any_owned_planet = {
+					OR = {
+						has_spaceport_module = trade_station_4
+						has_spaceport_module = trade_station_5
+					}
+				}
+			}
+			country_event = { id = trader_international.10 days = 5 random = 300 }
+		}
+	}
+}
+
+country_event = {
+	id = trader_international.10
+	is_triggered_only = yes
+	title = "trader_international.10.name"
+	desc = "trader_international.10.desc"
+	picture = GFX_trader_international_1
+	trigger = {
+		AND = {
+			#has_edict = international_trade
+			is_ai = no
+		}
+	}
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				OR = {
+					has_spaceport_module = trade_station_4
+					has_spaceport_module = trade_station_5
+				}
+			}
+			save_event_target_as = starting_planet
+		}
+		random_country = {
+			limit = {
+				AND = {
+				#	has_edict = international_trade
+					NOT = { is_at_war_with = ROOT }
+					is_country_type = default
+				#	any_owned_planet = {
+				#		OR = {
+				#			has_spaceport_module = trade_station_4
+				#			has_spaceport_module = trade_station_5
+				#		}
+				#	}
+					has_established_contact = ROOT
+					#	who = ROOT
+				}
+			}
+			random_owned_planet = {
+				limit = {
+					OR = {
+						has_spaceport_module = trade_station_4
+						has_spaceport_module = trade_station_5
+					}
+				}
+				save_event_target_as = destination_planet
+			}
+			save_event_target_as = international_destination
+		}
+		create_fleet = { Name = "Expedition Caravan" }
+		last_created_fleet = {
+			set_owner = event_target:trader_country
+			create_ship = {
+				name = "Trading Barge"
+				design = "C1"
+				set_ship_flag = barge
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+				name = "Trading Barge"
+				design = "C1"
+				set_ship_flag = barge
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+				name = "Trading Barge"
+				design = "C2"
+				set_ship_flag = barge
+			}
+			create_ship = {
+				name = "Trading Barge"
+				design = "C2"
+				set_ship_flag = barge
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+				name = "Trading Barge"
+				design = "C1"
+				set_ship_flag = barge
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			set_location = event_target:starting_planet
+			fleet_event = { id = trader_international.50 days = 1 }
+		}
+	}
+	
+	option = {
+		name = trade_rally
+		custom_tooltip = "trader_international.10.a"
+		add_modifier = {
+			modifier = "military_rallied"
+			days = 160
+		}
+		hidden_effect = {
+			last_created_fleet = {
+				add_modifier = {
+					modifier = "rallied_traders"
+					days = -1
+				}
+				create_ship = {
+					name = "Protector"
+					design = Protector
+				}
+				create_ship = {
+					name = "Protector"
+					design = Protector
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = trade_luck
+		custom_tooltip = "trader_international.10.b"
+		hidden_effect = { 
+			add_modifier = {
+				modifier = "trading_unrest"
+			}
+		}
+	}
+	
+	option = {
+		name = trade_no
+		custom_tooltip = "trader_international.10.c"
+		event_target:international_destination = { 
+			add_opinion_modifier   = {
+				who = ROOT
+				modifier = "opinion_trader_expedition_forgone"
+			}
+		}
+		hidden_effect = {
+			last_created_fleet = {
+				destroy_fleet = this
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = trader_international.50
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_ship = {
+			limit = {
+				AND = {
+				OR = {
+					is_ship_size = civilian_tanker
+					is_ship_size = civilian_freighter
+				}
+					fleet = {
+						is_same_value = root
+					}
+				}
+			}
+			add_modifier = {
+				modifier = trading_barge_modifier
+				days = -1
+			}
+		}
+	}
+}

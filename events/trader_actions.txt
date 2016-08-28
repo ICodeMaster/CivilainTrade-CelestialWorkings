@@ -55,6 +55,17 @@ event = {
 	is_triggered_only = yes
 	immediate = {
 		every_country = {
+			limit = {
+				any_owned_planet = {
+					OR = {
+						has_spaceport_module = trade_station_1
+						has_spaceport_module = trade_station_2
+						has_spaceport_module = trade_station_3
+						has_spaceport_module = trade_station_4
+						has_spaceport_module = trade_station_5
+					}
+				}
+			}
 			country_event = { id = tradeaction.60 days = 1}
 			country_event = { id = tradeaction.1 days = 1}
 		}
@@ -240,10 +251,6 @@ planet_event = {
 							}
 						
 						}
-					}
-					every_ship = {
-						ship_hitpoints_add = 3000
-						ship_armor_add = 10
 					}
 					set_location = ROOT
 					set_formation_scale = 1.6
@@ -536,6 +543,24 @@ fleet_event = {
 		has_fleet_flag = trader_fleet
 	}
 	immediate = {
+		every_ship = {
+			limit = {
+				AND = {
+				OR = {
+					is_ship_size = civilian_tanker
+					is_ship_size = civilian_freighter
+				}
+					fleet = {
+						is_same_value = root
+					}
+				NOT = {has_modifier = trading_barge_modifier}
+				}
+			}
+			add_modifier = {
+				modifier = trading_barge_modifier
+				days = -1
+			}
+		}
 		set_variable = {
 			which = "ship_count"
 			value = 0

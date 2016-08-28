@@ -30,6 +30,15 @@
     tech_trading_module_4_desc:0 "By making our trading platforms larger and more expansive, we allow more throughput of information and goods."
     tech_trading_module_5_desc:0 "The pinnacle of modern trading. Fast. Efficient. Perfect."
     
-    tradeaction.100.name:0 "Friendly Caravan Destroyed!"
-    tradeaction.100.desc:0 "A friendly Caravan was destroyed by [From.GetName] and the goods that were being transported were lost. Public blame and scorn cause the government to pay out."
+    opinion_trader_expedition_forgone:0 "Expedition Canceled"
+    
+    trader_international.10.name:0 "International Trade Route Launched!"
+    trader_international.10.desc:0 "Through the proliferation of our great economy, merchants are wanting to bring our technology to §Y[international_destination.GetName]§!"
+    trade_rally:0 "Rally the fleets!"
+    trade_luck:0 "Good luck to the brave souls!"
+    trade_no:0 "We can not dare give §Y [international_destination.GetName] §! our wares and secrets!"
+    
+    trader_international.10.a:0 "Bonus to fleet strength of the caravan, but, if destroyed, the people will resent this government."
+    trader_international.10.b:0 "Allow them to trade with reduced reward, and risk."
+    trader_international.10.c:0 "Disallow this trading, but reduce relations."
     
