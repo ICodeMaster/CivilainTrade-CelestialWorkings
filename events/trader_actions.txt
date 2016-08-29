@@ -553,7 +553,7 @@ fleet_event = {
 					fleet = {
 						is_same_value = root
 					}
-				NOT = {has_modifier = trading_barge_modifier}
+				NOT = { has_ship_modifier = trading_barge_modifier }
 				}
 			}
 			add_modifier = {

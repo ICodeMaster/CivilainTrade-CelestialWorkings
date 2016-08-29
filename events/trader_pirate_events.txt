@@ -40,15 +40,6 @@ fleet_event = {
 				set_aggro_range_measure_from = self
 				set_aggro_range = 700
 				set_formation_scale = 7
-				FROM = {
-				SOLAR_SYSTEM = {
-					random_neighbor_system = {
-						random_system_planet = {
-							last_created_fleet = {set_location = PREV}
-						}
-					}
-				}
-				}
 				create_ship = {
 						name = "Raider"
 						design = t_1_raider
@@ -115,6 +106,15 @@ fleet_event = {
 					
 					}
 					
+				}
+				FROM = {
+				SOLAR_SYSTEM = {
+					random_neighbor_system = {
+						random_system_planet = {
+							last_created_fleet = {set_location = PREV}
+						}
+					}
+				}
 				}
 			}
 			last_created_fleet = {fleet_event = { id = t_pirate.10 days = 2 random = 2 }}
