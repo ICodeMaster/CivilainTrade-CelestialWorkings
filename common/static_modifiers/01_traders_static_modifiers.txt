@@ -33,3 +33,7 @@ rallied_traders = {
 	ship_auto_repair_add = 0.2
 	ship_hitpoints_mult = 0.15
 }
+
+trading_unrest = {
+	pop_happiness = -0.12
+}
