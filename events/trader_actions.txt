@@ -53,6 +53,11 @@ event = {
 	id = tradeaction.101
 	hide_window = yes
 	is_triggered_only = yes
+	trigger = {
+		any_country = {
+			NOT = { has_edict = trader_lite }
+		}
+	}
 	immediate = {
 		every_country = {
 			limit = {

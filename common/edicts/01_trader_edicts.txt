@@ -1,0 +1,23 @@
+##########################################################################
+# Empire edicts
+##########################################################################
+
+country_edict = {
+	name = "trader_lite"
+	modifier = {
+		planet_sensor_range_mult = 0.25
+	}
+	
+	influence_cost = 0
+
+	potential = {
+		has_technology = tech_trading_module_1
+	}
+
+	allow = {
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}

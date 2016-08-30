@@ -7,12 +7,16 @@ event = {
 	immediate = {
 		every_country = {
 			limit = {
-				any_owned_planet = {
+				AND = {
+					any_owned_planet = {
 					OR = {
 						has_spaceport_module = trade_station_4
 						has_spaceport_module = trade_station_5
 					}
+					}
+					is_ai = no
 				}
+				
 			}
 			country_event = { id = trader_international.10 days = 5 random = 300 }
 		}
@@ -28,7 +32,6 @@ country_event = {
 	trigger = {
 		AND = {
 			#has_edict = international_trade
-			is_ai = no
 		}
 	}
 	immediate = {
@@ -47,12 +50,12 @@ country_event = {
 				#	has_edict = international_trade
 					NOT = { is_at_war_with = ROOT }
 					is_country_type = default
-				#	any_owned_planet = {
-				#		OR = {
-				#			has_spaceport_module = trade_station_4
-				#			has_spaceport_module = trade_station_5
-				#		}
-				#	}
+					any_owned_planet = {
+					OR = {
+							has_spaceport_module = trade_station_4
+							has_spaceport_module = trade_station_5
+						}
+					}
 					has_established_contact = ROOT
 				}
 			}
@@ -135,6 +138,7 @@ country_event = {
 			set_formation_scale = 5
 			set_fleet_stance = passive
 			fleet_event = { id = trader_international.50 days = 1 }
+			fleet_event = { id = trader_international.15 days = 3 }
 		}
 	}
 	
@@ -218,7 +222,7 @@ fleet_event = {
 			repeat = {
 			max_iterations = 5
 			while = {
-				id = international_trade_trigger.1
+				id = "international_trade_trigger.1"
 				AND = {
 					event_target:destination_system = {
 						OWNER = {
@@ -260,7 +264,6 @@ fleet_event = {
 				wait = 10
 			}
 		}
-			destroy_fleet = ROOT
 	}
 		
 }
