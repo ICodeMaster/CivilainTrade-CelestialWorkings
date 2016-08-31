@@ -46,11 +46,6 @@ trade_station_1 = {
 		spaceport_ship_build_time_mult = 0.1
 	}
 	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			from = { sector_controlled = yes }
-		}
 		modifier = {
 			factor = 0
 			from = { NOT = { has_spaceport_module = solar_panel_network } }
@@ -83,11 +78,6 @@ trade_station_2 = {
 	
 	
 	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			from = { sector_controlled = yes }
-		}
 		modifier = {
 			factor = 0
 			from = { NOT = { has_spaceport_module = solar_panel_network } }
@@ -120,7 +110,6 @@ trade_station_3 = {
 	}
 	
 	ai_weight = {
-		weight = 10
 		modifier = {
 			factor = 0
 			from = { sector_controlled = yes }
@@ -157,11 +146,6 @@ trade_station_4 = {
 	}
 	
 	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			from = { sector_controlled = yes }
-		}
 		modifier = {
 			factor = 0
 			from = { NOT = { has_spaceport_module = solar_panel_network } }
@@ -193,11 +177,6 @@ trade_station_5 = {
 	}
 	
 	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			from = { sector_controlled = yes }
-		}
 		modifier = {
 			factor = 0
 			from = { NOT = { has_spaceport_module = solar_panel_network } }
