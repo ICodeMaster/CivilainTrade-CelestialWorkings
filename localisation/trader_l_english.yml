@@ -42,3 +42,5 @@
     trader_international.10.b:0 "Allow them to trade with reduced reward, and risk."
     trader_international.10.c:0 "Disallow this trading, but reduce relations."
     
+    requires_trade_station:0 "Requires a trading platform in orbit."
+    

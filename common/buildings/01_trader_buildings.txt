@@ -85,6 +85,18 @@ trading_market = {
 	ai_special_building = yes
 	allow = {
 		custom_tooltip = {
+			text = "requires_trade_station"
+			planet = {
+				OR = {
+					has_spaceport_module = trade_station_1
+					has_spaceport_module = trade_station_2
+					has_spaceport_module = trade_station_3
+					has_spaceport_module = trade_station_4
+					has_spaceport_module = trade_station_5
+				}
+			}
+		}
+		custom_tooltip = {
 			text = "requires_building_capital_1"
 			planet = {
 				or = {
