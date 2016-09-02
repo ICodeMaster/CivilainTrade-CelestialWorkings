@@ -1,14 +1,13 @@
 # No scope, like on_game_start
 on_yearly_pulse = {
 	events = {
-		tradeaction.101
-		tradelite.101
+		tradeaction.02
 	}
 }
 on_press_begin = {
 	events = {
 		tradeaction.00
-		tradeaction.90
+		tradeaction.01
 	}
 }
 # This = owner of ship 1 (destroyed)
