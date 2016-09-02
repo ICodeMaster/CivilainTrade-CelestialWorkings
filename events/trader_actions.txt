@@ -8,7 +8,7 @@
 namespace = tradeaction
 ############ Pirate Initalizaion ##############
 event = {
-	id = tradeaction.90
+	id = tradeaction.01
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
@@ -47,40 +47,7 @@ event = {
 			}
 	}
 }
-
-##### Trade Initalizaion #######
-event = {
-	id = tradeaction.101
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		any_country = {
-			NOT = { has_edict = trader_lite }
-		}
-	}
-	immediate = {
-		every_country = {
-			limit = {
-				any_owned_planet = {
-					OR = {
-						has_spaceport_module = trade_station_1
-						has_spaceport_module = trade_station_2
-						has_spaceport_module = trade_station_3
-						has_spaceport_module = trade_station_4
-						has_spaceport_module = trade_station_5
-					}
-				}
-			}
-			country_event = { id = tradeaction.60 days = 1}
-			country_event = { id = tradeaction.1 days = 1}
-		}
-		event_target:trader_country = {
-			every_owned_fleet = {
-				fleet_event = { id = tradeaction.52 days = 1 }
-			}
-		}
-	}
-}
+######## Guild initalization #################
 country_event = {
 	id = tradeaction.00
 	hide_window = yes
@@ -146,16 +113,66 @@ country_event = {
 		name = ok
 	}
 }
-##### Picking Spawn #####
-country_event = {
-	id = tradeaction.1
+############# Trader Lite / Trader Normal ###########
+event = {
+	id = tradeaction.02
 	hide_window = yes
 	is_triggered_only = yes
-
-	trigger = {
-	
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					limit = {
+						is_ai = no
+					}
+					has_edict = edict_trader_lite
+				}
+			}
+			random_country = { country_event = { id = tradelite.00 days = 1 } }
+			else = {
+				random_country = { country_event = { id = tradeaction.10 days = 1 } }
+			}
+		}
 	}
-
+}
+##### Trade Initalizaion #######
+country_event = {
+	id = tradeaction.10
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_country = {
+			limit = {
+				any_owned_planet = {
+				AND = {
+					has_spaceport = yes
+					OR = {
+						has_spaceport_module = trade_station_1
+						has_spaceport_module = trade_station_2
+						has_spaceport_module = trade_station_3
+						has_spaceport_module = trade_station_4
+						has_spaceport_module = trade_station_5
+					}
+				}
+				}
+			}
+			country_event = { id = tradeaction.11 days = 1}
+			country_event = { id = tradeaction.11 days = 40 random = 10}
+			country_event = { id = tradeaction.11 days = 90 random = 10}
+			country_event = { id = tradeaction.11 days = 200 random = 40}
+		}
+		event_target:trader_country = {
+			every_owned_fleet = {
+				fleet_event = { id = tradeaction.52 days = 1 }
+			}
+		}
+	}
+}
+##### Picking Spawn #####
+country_event = {
+	id = tradeaction.11
+	hide_window = yes
+	is_triggered_only = yes
 	immediate = {
 		random_owned_planet = {
 			limit = { 
@@ -196,7 +213,7 @@ country_event = {
 				}
 			}
 			planet_event = {
-				id = tradeaction.3
+				id = tradeaction.12
 				days = 1
 			}
 		}
@@ -207,7 +224,7 @@ country_event = {
 }
 #### Fleet Initialization #####
 planet_event = {
-	id = tradeaction.3
+	id = tradeaction.12
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -347,7 +364,7 @@ planet_event = {
 					set_event_locked = yes
 				}
 			last_created_fleet = { fleet_event = { id = tradeaction.52 days = 1 } }
-			last_created_fleet = { fleet_event = { id = tradeaction.4 days = 4 } }
+			last_created_fleet = { fleet_event = { id = tradeaction.20 days = 4 } }
 			
 	}
 	option = {
@@ -356,7 +373,7 @@ planet_event = {
 }
 #### Intranation Fleet Handler #####
 fleet_event = {
-	id = tradeaction.4
+	id = tradeaction.20
 	hide_window = yes
 	is_triggered_only = yes
 	
@@ -433,7 +450,6 @@ fleet_event = {
 										flag = trader_depleted_flag
 										days = 100
 									}
-									set_planet_flag = tier_5_delievery
 									planet_event = { id = tradeaction.300 days = 3 }
 									#ROOT = {
 									#	add_energy = 500
@@ -448,7 +464,6 @@ fleet_event = {
 												flag = trader_depleted_flag
 												days = 140
 											}
-											set_planet_flag = tier_4_delievery
 											planet_event = { id = tradeaction.300 days = 3 }
 											#ROOT = {
 											#	add_energy = 400
@@ -463,7 +478,6 @@ fleet_event = {
 														flag = trader_depleted_flag
 														days = 190
 													}
-													set_planet_flag = tier_3_delievery
 													planet_event = { id = tradeaction.300 days = 3 }
 													#ROOT = {
 													#	add_energy = 300
@@ -478,7 +492,6 @@ fleet_event = {
 															flag = trader_depleted_flag
 															days = 250
 															}
-															set_planet_flag = tier_2_delievery
 															planet_event = { id = tradeaction.300 days = 3 }
 															#ROOT = {
 															#	add_energy = 200
@@ -493,7 +506,6 @@ fleet_event = {
 																		flag = trader_depleted_flag
 																		days = 320
 																	}
-																	set_planet_flag = tier_1_delievery
 																	planet_event = { id = tradeaction.300 days = 3 }
 																	#ROOT = {
 																	#add_energy = 100
@@ -514,6 +526,54 @@ fleet_event = {
 										}
 									}
 								}
+								if = {
+									limit = {
+										ROOT = {
+											has_fleet_flag = tier_5
+										}
+									}
+									set_planet_flag = tier_5_delievery
+									else = {
+										if = {
+											limit = {
+												ROOT = {
+													has_fleet_flag = tier_4
+												}
+											}
+											set_planet_flag = tier_4_delievery
+											else = {
+												if = {
+													limit = {
+														ROOT = {
+															has_fleet_flag = tier_3
+														}
+													}
+													set_planet_flag = tier_3_delievery
+													else = {
+														if = {
+															limit = {
+																ROOT = {
+																	has_fleet_flag = tier_2
+																}
+															}
+															set_planet_flag = tier_2_delievery
+															else = {
+																if = {
+																	limit = {
+																		ROOT = {
+																			has_fleet_flag = tier_1
+																		}
+																	}
+																	set_planet_flag = tier_1_delievery
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
 								
 							}
 						}
@@ -522,7 +582,7 @@ fleet_event = {
 					effect = {
 						id= tradeaction.4.newport.1
 						remove_fleet_flag = trader_in_transit
-						fleet_event = { id = tradeaction.4 days = 3}
+						fleet_event = { id = tradeaction.20 days = 3}
 					}
 				}
 				else = {
@@ -531,7 +591,7 @@ fleet_event = {
 					wait = 4
 					effect = {
 						id= tradeaction.4.newport.2
-					fleet_event = { id = tradeaction.4 days = 3}
+					fleet_event = { id = tradeaction.20 days = 3}
 					}
 				}
 			}
@@ -747,7 +807,7 @@ country_event = {
 }
 
 country_event = {
-	id = tradeaction.91
+	id = tradeaction.30
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
