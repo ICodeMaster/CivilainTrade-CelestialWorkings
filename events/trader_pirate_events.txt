@@ -32,7 +32,7 @@ fleet_event = {
 			save_global_event_target_as = raider_country
 		}
 		random = {
-			chance = 15
+			chance = 11
 			create_fleet = {
 				name = "Caravan Raiders"
 			}

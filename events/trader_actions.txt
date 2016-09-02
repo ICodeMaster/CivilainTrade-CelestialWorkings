@@ -17,6 +17,7 @@ event = {
 				type = piratetrader 
 				species = random
 				auto_delete = no
+				gfx = pirate
 				government = enlightened_monarchy
 				flag = {
 					icon = {
@@ -122,9 +123,7 @@ event = {
 		if = {
 			limit = {
 				any_country = {
-					limit = {
-						is_ai = no
-					}
+					is_ai = no
 					has_edict = edict_trader_lite
 				}
 			}
