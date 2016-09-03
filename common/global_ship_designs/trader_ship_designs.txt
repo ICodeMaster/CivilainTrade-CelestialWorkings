@@ -69,6 +69,10 @@ ship_design = {
 	required_component="WARP_DRIVE_1"
 	required_component = "SHIP_THRUSTER_2"
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/bug_fix
 ship_design = {
 	name = "t_1_raider"
 	ship_size = pirate_corvette

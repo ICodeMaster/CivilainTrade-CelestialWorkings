@@ -60,9 +60,6 @@ tech_trading_module_1 = {
 		modifier = {
 			factor = 2
 			has_ethic = ethic_fanatic_pacifist
-			has_government = moral_democracy
-			has_government = peaceful_bureaucracy
-			has_government = enlightened_monarchy
 		}
 		modifier = {
 			factor = 1.25
@@ -76,9 +73,31 @@ tech_trading_module_1 = {
 			OR = {
 			has_ethic = ethic_fanatic_capitalism
 			}
-		
 		}
 	}	
+	ai_weight = {
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_good_trading"
+			}
+		}
+		modifier = {
+			factor = 3
+			OR = {
+			has_ethic = ethic_fanatic_capitalism
+			}
+		}
+	}
 }
 
 tech_trading_module_2 = {
@@ -88,6 +107,7 @@ tech_trading_module_2 = {
 	category = { good_trading }
 	weight = @tier2weight2
 	feature_flags = { trade_station_2 }
+	prerequisites = { "tech_trading_module_1" }
 	weight_modifier = {
 		modifier = {
 			factor = 1.5
@@ -96,9 +116,33 @@ tech_trading_module_2 = {
 		modifier = {
 			factor = 2
 			has_ethic = ethic_fanatic_pacifist
-			has_government = moral_democracy
-			has_government = peaceful_bureaucracy
-			has_government = enlightened_monarchy
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_good_trading"
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_capitalism
+			}
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_capitalism
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_pacifist
 		}
 		modifier = {
 			factor = 1.25
@@ -112,9 +156,8 @@ tech_trading_module_2 = {
 			OR = {
 			has_ethic = ethic_fanatic_capitalism
 			}
-		
 		}
-	}	
+	}
 }
 
 tech_trading_module_3 = {
@@ -124,6 +167,7 @@ tech_trading_module_3 = {
 	category = { good_trading }
 	weight = @tier3weight2
 	feature_flags = { trade_station_3 }
+	prerequisites = { "tech_trading_module_2" }
 	weight_modifier = {
 		modifier = {
 			factor = 1.5
@@ -132,9 +176,33 @@ tech_trading_module_3 = {
 		modifier = {
 			factor = 2
 			has_ethic = ethic_fanatic_pacifist
-			has_government = moral_democracy
-			has_government = peaceful_bureaucracy
-			has_government = enlightened_monarchy
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_good_trading"
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_capitalism
+			}
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_capitalism
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_pacifist
 		}
 		modifier = {
 			factor = 1.25
@@ -148,7 +216,6 @@ tech_trading_module_3 = {
 			OR = {
 			has_ethic = ethic_fanatic_capitalism
 			}
-		
 		}
 	}	
 }
@@ -162,6 +229,7 @@ tech_trading_module_4 = {
 	
 	weight = 30
 	feature_flags = { trade_station_4 }
+	prerequisites = { "tech_trading_module_3" }
 	weight_modifier = {
 		modifier = {
 			factor = 1.5
@@ -170,9 +238,33 @@ tech_trading_module_4 = {
 		modifier = {
 			factor = 2
 			has_ethic = ethic_fanatic_pacifist
-			has_government = moral_democracy
-			has_government = peaceful_bureaucracy
-			has_government = enlightened_monarchy
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_good_trading"
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_capitalism
+			}
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_capitalism
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_pacifist
 		}
 		modifier = {
 			factor = 1.25
@@ -186,7 +278,6 @@ tech_trading_module_4 = {
 			OR = {
 			has_ethic = ethic_fanatic_capitalism
 			}
-		
 		}
 	}	
 }
@@ -200,6 +291,7 @@ tech_trading_module_5 = {
 	weight = 30
 	
 	feature_flags = { trade_station_5 }
+	prerequisites = { "tech_trading_module_5" }
 	weight_modifier = {
 		modifier = {
 			factor = 1.5
@@ -207,14 +299,34 @@ tech_trading_module_5 = {
 		}
 		modifier = {
 			factor = 2
-			OR = {
 			has_ethic = ethic_fanatic_pacifist
-			has_ethic = ethic_capitalism
-			has_government = moral_democracy
-			has_government = peaceful_bureaucracy
-			has_government = enlightened_monarchy
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_good_trading"
 			}
-
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_capitalism
+			}
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_capitalism
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_pacifist
 		}
 		modifier = {
 			factor = 1.25
@@ -228,7 +340,6 @@ tech_trading_module_5 = {
 			OR = {
 			has_ethic = ethic_fanatic_capitalism
 			}
-		
 		}
-	}	
+	}
 }
