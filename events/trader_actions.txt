@@ -12,12 +12,12 @@ event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
-				create_country = {
+			create_country = {
 				name = "Caravan Raiders"
 				type = piratetrader 
 				species = random
 				auto_delete = no
-				gfx = pirate
+				#gfx = pirate
 				government = enlightened_monarchy
 				flag = {
 					icon = {
@@ -610,14 +610,16 @@ fleet_event = {
 		every_ship = {
 			limit = {
 				AND = {
-				OR = {
-					is_ship_size = civilian_tanker
-					is_ship_size = civilian_freighter
-				}
+					OR = {
+						is_ship_size = civilian_tanker
+						is_ship_size = civilian_freighter
+					}
 					fleet = {
 						is_same_value = root
 					}
-				NOT = { has_ship_modifier = trading_barge_modifier }
+					NOT = {
+						has_modifier = "trading_barge_modifier"
+					}
 				}
 			}
 			add_modifier = {

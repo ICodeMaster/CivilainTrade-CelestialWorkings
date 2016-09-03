@@ -52,17 +52,14 @@ country_event = {
 	immediate = {
 		random_owned_planet = {
 			limit = { 
-					AND = {
-						has_spaceport = yes
-						OR = {
-							has_spaceport = trade_station_1
-							has_spaceport = trade_station_2
-							has_spaceport = trade_station_3
-							has_spaceport = trade_station_4
-							has_spaceport = trade_station_5
-						}
-						NOT = { has_planet_flag = trader_depleted_flag }
-					}
+				OR = {
+					has_spaceport_module = "trade_station_1"
+					has_spaceport_module = "trade_station_2"
+					has_spaceport_module = "trade_station_3"
+					has_spaceport_module = "trade_station_4"
+					has_spaceport_module = "trade_station_5"
+				}
+				NOT = { has_planet_flag = trader_depleted_flag }
 			}
 			planet_event = {
 				id = tradelite.10
