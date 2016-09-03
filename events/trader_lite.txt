@@ -23,12 +23,15 @@ country_event = {
 		every_country = {
 			limit = {
 				any_owned_planet = {
-					OR = {
-						has_spaceport_module = trade_station_1
-						has_spaceport_module = trade_station_2
-						has_spaceport_module = trade_station_3
-						has_spaceport_module = trade_station_4
-						has_spaceport_module = trade_station_5
+					AND = {
+						has_spaceport = yes
+						OR = {
+							has_spaceport_module = trade_station_1
+							has_spaceport_module = trade_station_2
+							has_spaceport_module = trade_station_3
+							has_spaceport_module = trade_station_4
+							has_spaceport_module = trade_station_5
+						}
 					}
 				}
 			}
@@ -49,17 +52,17 @@ country_event = {
 	immediate = {
 		random_owned_planet = {
 			limit = { 
-				AND = {
-					has_spaceport = yes
-					OR = {
-						has_spaceport = trade_station_1
-						has_spaceport = trade_station_2
-						has_spaceport = trade_station_3
-						has_spaceport = trade_station_4
-						has_spaceport = trade_station_5
+					AND = {
+						has_spaceport = yes
+						OR = {
+							has_spaceport = trade_station_1
+							has_spaceport = trade_station_2
+							has_spaceport = trade_station_3
+							has_spaceport = trade_station_4
+							has_spaceport = trade_station_5
+						}
+						NOT = { has_planet_flag = trader_depleted_flag }
 					}
-					NOT = { has_planet_flag = trader_depleted_flag }
-				}
 			}
 			planet_event = {
 				id = tradelite.10
@@ -98,48 +101,49 @@ planet_event = {
 						flag = trader_depleted_flag
 						days = 140
 					}
-				else = {
-					if = {
-						limit = {
-							has_spaceport_module = trade_station_3
-							NOT = { has_planet_flag = tier_3_spawned }
-						}
-						planet_event = { id = tradelite.11 days = 1 }
-						set_timed_planet_flag = {
-							flag = trader_depleted_flag
-							days = 190
-						}
-						else = {
+					else = {
 						if = {
-						limit = {
-							has_spaceport_module = trade_station_2
-							NOT = { has_planet_flag = tier_2_spawned }
-						}
-						planet_event = { id = tradelite.11 days = 1 }
-						set_timed_planet_flag = {
-							flag = trader_depleted_flag
-							days = 250
-						}
-						else = {
-						if = {
-						limit = {
-							has_spaceport_module = trade_station_1
-							NOT = { has_planet_flag = tier_1_spawned }
-						}
-						planet_event = { id = tradelite.11 days = 1 }
-						set_timed_planet_flag = {
-							flag = trader_depleted_flag
-							days = 320
-						}
-						}
-						}
-						}
+							limit = {
+								has_spaceport_module = trade_station_3
+								NOT = { has_planet_flag = tier_3_spawned }
+							}
+							planet_event = { id = tradelite.11 days = 1 }
+							set_timed_planet_flag = {
+								flag = trader_depleted_flag
+								days = 190
+							}
+							else = {
+								if = {
+									limit = {
+										has_spaceport_module = trade_station_2
+										NOT = { has_planet_flag = tier_2_spawned }
+									}
+									planet_event = { id = tradelite.11 days = 1 }
+									set_timed_planet_flag = {
+										flag = trader_depleted_flag
+										days = 250
+									}
+									else = {
+										if = {
+											limit = {
+												has_spaceport_module = trade_station_1
+												NOT = { has_planet_flag = tier_1_spawned }
+											}
+											planet_event = { id = tradelite.11 days = 1 }
+											set_timed_planet_flag = {
+												flag = trader_depleted_flag
+												days = 320
+											}
+										}
+									}
+								}
+							}
 						}
 					}
 				}
-				}
 			}
 		}
+		OWNER = { country_event = { id = tradelite.1 days = 30 random = 30 } }
 	}
 }
 
@@ -177,118 +181,118 @@ planet_event = {
 			planet_event = { id = tradeaction.305 days = 150 }
 			else = {
 				if = {
-			limit = {
-				has_spaceport_module = trade_station_4
-				NOT = { has_planet_flag = tier_4_spawned }
-			}
-			random_tile = {
-				limit = {
-					has_building = "trading_market"
+					limit = {
+						has_spaceport_module = trade_station_4
+						NOT = { has_planet_flag = tier_4_spawned }
+					}
+					random_tile = {
+						limit = {
+							has_building = "trading_market"
+						}
+						add_resource = {
+						resource = energy
+						amount = 17
+						replace = no
+						}
+						add_resource = {
+						resource = minerals
+						amount = 15
+						replace = no
+						}	
+					}
+					set_timed_planet_flag = {
+						flag = tier_4_spawned
+						days = 450
+					}
+					planet_event = { id = tradeaction.304 days = 150 }
+					else = {
+						if = {
+							limit = {
+								has_spaceport_module = trade_station_3
+								NOT = { has_planet_flag = tier_3_spawned }
+							}
+							random_tile = {
+								limit = {
+									has_building = "trading_market"
+								}
+								add_resource = {
+								resource = energy
+								amount = 12
+								replace = no
+								}
+								add_resource = {
+								resource = minerals
+								amount = 10
+								replace = no
+								}	
+							}
+							set_timed_planet_flag = {
+								flag = tier_3_spawned
+								days = 450
+							}
+							planet_event = { id = tradeaction.303 days = 150 }
+							else = {
+								if = {
+									limit = {
+										has_spaceport_module = trade_station_2
+										NOT = { has_planet_flag = tier_2_spawned }
+									}
+									random_tile = {
+										limit = {
+											has_building = "trading_market"
+										}
+										add_resource = {
+										resource = energy
+										amount = 8
+										replace = no
+										}
+										add_resource = {
+										resource = minerals
+										amount = 6
+										replace = no
+										}	
+									}
+									set_timed_planet_flag = {
+										flag = tier_2_spawned
+										days = 450
+									}
+									planet_event = { id = tradeaction.302 days = 150 }
+									else = {
+										if = {
+											limit = {
+												has_spaceport_module = trade_station_1
+												NOT = { has_planet_flag = tier_1_spawned }
+											}
+											random_tile = {
+												limit = {
+													has_building = "trading_market"
+												}
+												add_resource = {
+												resource = energy
+												amount = 5
+												replace = no
+												}
+												add_resource = {
+												resource = minerals
+												amount = 3
+												replace = no
+												}	
+											}
+											set_timed_planet_flag = {
+												flag = tier_1_spawned
+												days = 450
+											}
+											planet_event = { id = tradeaction.301 days = 150 }
+											else = {
+											
+											}
+										}
+									}
+								}
+							}
+						}	
+					}
 				}
-				add_resource = {
-				resource = energy
-				amount = 17
-				replace = no
-				}
-				add_resource = {
-				resource = minerals
-				amount = 15
-				replace = no
-				}	
-			}
-			set_timed_planet_flag = {
-				flag = tier_4_spawned
-				days = 450
-			}
-			planet_event = { id = tradeaction.304 days = 150 }
-			else = {
-				if = {
-			limit = {
-				has_spaceport_module = trade_station_3
-				NOT = { has_planet_flag = tier_3_spawned }
-			}
-			random_tile = {
-				limit = {
-					has_building = "trading_market"
-				}
-				add_resource = {
-				resource = energy
-				amount = 12
-				replace = no
-				}
-				add_resource = {
-				resource = minerals
-				amount = 10
-				replace = no
-				}	
-			}
-			set_timed_planet_flag = {
-				flag = tier_3_spawned
-				days = 450
-			}
-			planet_event = { id = tradeaction.303 days = 150 }
-			else = {
-				if = {
-			limit = {
-				has_spaceport_module = trade_station_2
-				NOT = { has_planet_flag = tier_2_spawned }
-			}
-			random_tile = {
-				limit = {
-					has_building = "trading_market"
-				}
-				add_resource = {
-				resource = energy
-				amount = 8
-				replace = no
-				}
-				add_resource = {
-				resource = minerals
-				amount = 6
-				replace = no
-				}	
-			}
-			set_timed_planet_flag = {
-				flag = tier_2_spawned
-				days = 450
-			}
-			planet_event = { id = tradeaction.302 days = 150 }
-			else = {
-				if = {
-			limit = {
-				has_spaceport_module = trade_station_1
-				NOT = { has_planet_flag = tier_1_spawned }
-			}
-			random_tile = {
-				limit = {
-					has_building = "trading_market"
-				}
-				add_resource = {
-				resource = energy
-				amount = 5
-				replace = no
-				}
-				add_resource = {
-				resource = minerals
-				amount = 3
-				replace = no
-				}	
-			}
-			set_timed_planet_flag = {
-				flag = tier_1_spawned
-				days = 450
-			}
-			planet_event = { id = tradeaction.301 days = 150 }
-			else = {
-			
-			}
-		}
-			}
-		}
-			}
-		}
-			}
-		}
 			}
 		}
 	}

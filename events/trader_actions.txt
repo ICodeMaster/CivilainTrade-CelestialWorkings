@@ -124,7 +124,7 @@ event = {
 			limit = {
 				any_country = {
 					is_ai = no
-					has_edict = edict_trader_lite
+					has_edict = trader_lite
 				}
 			}
 			random_country = { country_event = { id = tradelite.00 days = 1 } }
@@ -811,7 +811,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		FROMFROM = {
-			is_ship_size = trader_barge
+			#is_ship_size = C1
 		}
 	}
 	immediate = {
