@@ -65,7 +65,7 @@
 
 tradercountry = {
 	show_in_contacts_list = no	
-	orbital_bomardment = no
+	orbital_bombardment = no
 	diplomatic_wars = yes
 	ai = {
 		enabled = no

@@ -29,7 +29,7 @@ military_rallied = {
 }
 
 rallied_traders = {
-	damage_vs_country_type_piratetrader = 0.3
+	damage_vs_country_type_piratetrader_mult = 0.3
 	ship_auto_repair_add = 0.2
 	ship_hitpoints_mult = 0.15
 }
