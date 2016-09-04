@@ -65,11 +65,11 @@
 #
 
 trading_market = {
-	base_buildtime = 180
+	base_buildtime = 1
 	
 	cost = {
-		minerals = 250
-		energy = 300
+		minerals = 0
+		energy = 0
 	}
 	
 	planet_unique = yes
@@ -109,20 +109,6 @@ trading_market = {
 	}
 	
 	ai_weight = {
-		weight = 1000
-		modifier = {
-			factor = 0
-			from = {
-				NOT = {
-					OR = {
-						has_spaceport_module = trade_station_1
-						has_spaceport_module = trade_station_2
-						has_spaceport_module = trade_station_3
-						has_spaceport_module = trade_station_4
-						has_spaceport_module = trade_station_5
-					}
-				}
-			}
-		}
+		weight = 1000000
 	}
 }

@@ -45,25 +45,29 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 
-	trigger = {
-	
-	}
-
 	immediate = {
-		random_owned_planet = {
-			limit = { 
-				OR = {
-					has_spaceport_module = "trade_station_1"
-					has_spaceport_module = "trade_station_2"
-					has_spaceport_module = "trade_station_3"
-					has_spaceport_module = "trade_station_4"
-					has_spaceport_module = "trade_station_5"
+		if = {
+			limit = {
+				not = {
+					has_country_flag = traderlite_running
 				}
-				NOT = { has_planet_flag = trader_depleted_flag }
 			}
-			planet_event = {
-				id = tradelite.10
-				days = 1
+			set_country_flag  = traderlite_running
+			random_owned_planet = {
+				limit = { 
+					OR = {
+						has_spaceport_module = "trade_station_1"
+						has_spaceport_module = "trade_station_2"
+						has_spaceport_module = "trade_station_3"
+						has_spaceport_module = "trade_station_4"
+						has_spaceport_module = "trade_station_5"
+					}
+					NOT = { has_planet_flag = trader_depleted_flag }
+				}
+				planet_event = {
+					id = tradelite.10
+					days = 1
+				}
 			}
 		}
 	}
@@ -140,7 +144,10 @@ planet_event = {
 				}
 			}
 		}
-		OWNER = { country_event = { id = tradelite.1 days = 30 random = 30 } }
+		OWNER = {
+			country_event = { id = tradelite.1 days = 30 random = 30 }
+			remove_country_flag = traderlite_running
+		}
 	}
 }
 
