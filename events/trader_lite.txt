@@ -10,7 +10,7 @@ namespace = tradelite
 ##### Trade Initalizaion #######
 country_event = {
 	id = tradelite.00
-	hide_window = yes
+	#hide_window = yes
 	is_triggered_only = yes
 	immediate = {
 		event_target:trader_country = {
@@ -44,10 +44,6 @@ country_event = {
 	id = tradelite.1
 	hide_window = yes
 	is_triggered_only = yes
-
-	trigger = {
-	
-	}
 
 	immediate = {
 		random_owned_planet = {
@@ -140,7 +136,7 @@ planet_event = {
 				}
 			}
 		}
-		OWNER = { country_event = { id = tradelite.1 days = 30 random = 30 } }
+		OWNER = { country_event = { id = tradelite.1 days = 50 random = 30 } }
 	}
 }
 
