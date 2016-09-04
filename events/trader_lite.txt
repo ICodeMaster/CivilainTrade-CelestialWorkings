@@ -39,6 +39,7 @@ country_event = {
 		}
 	}
 }
+
 ##### Picking Spawn #####
 country_event = {
 	id = tradelite.1
