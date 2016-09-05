@@ -42,15 +42,21 @@ trade_station_1 = {
 	}
 	planet_modifier = {
 		planet_border_mult = 0.1
-		planet_migration_all_pull = 0.5
+		planet_migration_all_pull = 0.05
 	}
 	modifier = {
 		spaceport_ship_build_time_mult = 0.1
 	}
 	ai_weight = {
+		weight = 10
 		modifier = {
-			factor = 0
-			from = { NOT = { has_spaceport_module = solar_panel_network } }
+			factor = 1000
+			owner = {
+				OR = {
+					has_ethic = ethic_capitalist
+					has_ethic = ethic_fanatic_capitalist
+				}
+			}
 		}
 	}
 }
@@ -74,17 +80,23 @@ trade_station_2 = {
 	}
 		
 	planet_modifier = {
-		planet_border_mult = 0.6
-		planet_migration_all_pull = 0.5
+		planet_border_mult = 0.15
+		planet_migration_all_pull = 0.05
 	}
 	modifier = {
 		spaceport_ship_build_time_mult = 0.1
 	}
 	
 	ai_weight = {
+		weight = 10
 		modifier = {
-			factor = 0
-			from = { NOT = { has_spaceport_module = solar_panel_network } }
+			factor = 1000
+			owner = {
+				OR = {
+					has_ethic = ethic_capitalist
+					has_ethic = ethic_fanatic_capitalist
+				}
+			}
 		}
 	}
 }
@@ -108,21 +120,23 @@ trade_station_3 = {
 	}
 	
 	planet_modifier = {
-		planet_border_mult = 1.1
-		planet_migration_all_pull = 0.5
+		planet_border_mult = 0.2
+		planet_migration_all_pull = 0.05
 	}
 	
 	modifier = {
 		spaceport_ship_build_time_mult = 0.1
 	}
 	ai_weight = {
+		weight = 10
 		modifier = {
-			factor = 0
-			from = { sector_controlled = yes }
-		}
-		modifier = {
-			factor = 0
-			from = { NOT = { has_spaceport_module = solar_panel_network } }
+			factor = 1000
+			owner = {
+				OR = {
+					has_ethic = ethic_capitalist
+					has_ethic = ethic_fanatic_capitalist
+				}
+			}
 		}
 	}
 }
@@ -146,17 +160,23 @@ trade_station_4 = {
 	}
 	
 	planet_modifier = {
-		planet_border_mult = 1.6
-		planet_migration_all_pull = 0.5
+		planet_border_mult = 0.25
+		planet_migration_all_pull = 0.05
 	}
 	modifier = {
 		spaceport_ship_build_time_mult = 0.1
 	}
 	
 	ai_weight = {
+		weight = 10
 		modifier = {
-			factor = 0
-			from = { NOT = { has_spaceport_module = solar_panel_network } }
+			factor = 1000
+			owner = {
+				OR = {
+					has_ethic = ethic_capitalist
+					has_ethic = ethic_fanatic_capitalist
+				}
+			}
 		}
 	}
 }
@@ -179,17 +199,23 @@ trade_station_5 = {
 		#minerals = 40
 	}
 	planet_modifier = {
-		planet_border_mult = 2.5
-		planet_migration_all_pull = 0.5
+		planet_border_mult = 0.3
+		planet_migration_all_pull = 0.05
 	}
 	modifier = {
 		spaceport_ship_build_time_mult = 0.1
 	}
 	
 	ai_weight = {
+		weight = 10
 		modifier = {
-			factor = 0
-			from = { NOT = { has_spaceport_module = solar_panel_network } }
+			factor = 1000
+			owner = {
+				OR = {
+					has_ethic = ethic_capitalist
+					has_ethic = ethic_fanatic_capitalist
+				}
+			}
 		}
 	}
 }

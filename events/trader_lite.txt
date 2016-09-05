@@ -13,6 +13,19 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
+		if = {
+			limit = {
+				has_global_flag = trader_lite_active
+			}
+			every_planet = {
+				remove_planet_flag = has_tier_1
+				remove_planet_flag = has_tier_2
+				remove_planet_flag = has_tier_3
+				remove_planet_flag = has_tier_4
+				remove_planet_flag = has_tier_5
+			}
+		}
+		set_global_flag = trader_lite_active
 		event_target:trader_country = {
 			every_owned_ship = {
 				fleet = {
@@ -35,7 +48,10 @@ country_event = {
 					}
 				}
 			}
-			country_event = { id = tradelite.1 days = 1 }
+			random = {
+				chance = 85
+				country_event = { id = tradelite.1 days = 1 }
+			}
 		}
 	}
 }
@@ -52,6 +68,7 @@ country_event = {
 				not = {
 					has_country_flag = traderlite_running
 				}
+				has_global_flag = trader_lite_active
 			}
 			set_country_flag  = traderlite_running
 			random_owned_planet = {
@@ -87,10 +104,10 @@ planet_event = {
 				has_spaceport_module = trade_station_5
 				NOT = { has_planet_flag = tier_5_spawned }
 			}
-			planet_event = { id = tradelite.11 days = 1 }
+			planet_event = { id = tradelite.11 days = 10 }
 			set_timed_planet_flag = {
 				flag = trader_depleted_flag
-				days = 100
+				days = 170
 			}
 			else = {
 				if = {
@@ -98,10 +115,10 @@ planet_event = {
 						has_spaceport_module = trade_station_4
 						NOT = { has_planet_flag = tier_4_spawned }
 					}
-					planet_event = { id = tradelite.11 days = 1 }
+					planet_event = { id = tradelite.11 days = 10 }
 					set_timed_planet_flag = {
 						flag = trader_depleted_flag
-						days = 140
+						days = 200
 					}
 					else = {
 						if = {
@@ -109,10 +126,10 @@ planet_event = {
 								has_spaceport_module = trade_station_3
 								NOT = { has_planet_flag = tier_3_spawned }
 							}
-							planet_event = { id = tradelite.11 days = 1 }
+							planet_event = { id = tradelite.11 days = 10 }
 							set_timed_planet_flag = {
 								flag = trader_depleted_flag
-								days = 190
+								days = 230
 							}
 							else = {
 								if = {
@@ -120,10 +137,10 @@ planet_event = {
 										has_spaceport_module = trade_station_2
 										NOT = { has_planet_flag = tier_2_spawned }
 									}
-									planet_event = { id = tradelite.11 days = 1 }
+									planet_event = { id = tradelite.11 days = 10 }
 									set_timed_planet_flag = {
 										flag = trader_depleted_flag
-										days = 250
+										days = 260
 									}
 									else = {
 										if = {
@@ -131,7 +148,7 @@ planet_event = {
 												has_spaceport_module = trade_station_1
 												NOT = { has_planet_flag = tier_1_spawned }
 											}
-											planet_event = { id = tradelite.11 days = 1 }
+											planet_event = { id = tradelite.11 days = 10 }
 											set_timed_planet_flag = {
 												flag = trader_depleted_flag
 												days = 320

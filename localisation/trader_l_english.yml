@@ -3,6 +3,9 @@
     trading_market:0 "Trading Marketplace"
     trading_market_desc:0 "The marketplace where trading fleets deposite thier wares."
     
+    edict_trader_lite:0 "Civilian Trading Mode: Lite"
+    edict_trader_lite_desc:0 "Simulate Trading with events instead of ships."
+    
     sm_trade_station_1:0 "Level 1 Trading Platform"
     sm_trade_station_2:0 "Level 2 Trading Platform"
     sm_trade_station_3:0 "Level 3 Trading Platform"
@@ -30,7 +33,8 @@
     tech_trading_module_4_desc:0 "By making our trading platforms larger and more expansive, we allow more throughput of information and goods."
     tech_trading_module_5_desc:0 "The pinnacle of modern trading. Fast. Efficient. Perfect."
     
-    opinion_trader_expedition_forgone:0 "Expedition Canceled"
+    opinion_trader_expedition_forgone:0 "Trade Expedition Canceled"
+    millitary_rallied:0 "Millitary Rallied"
     
     trader_international.10.name:0 "International Trade Route Launched!"
     trader_international.10.desc:0 "Through the proliferation of our great economy, merchants are wanting to bring our technology to §Y[international_destination.GetName]§!"

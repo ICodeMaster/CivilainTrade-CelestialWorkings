@@ -140,6 +140,7 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
+		remove_global_flag = trader_lite_active
 		every_country = {
 			limit = {
 				any_owned_planet = {
@@ -428,7 +429,7 @@ fleet_event = {
 					effect = {
 						id = tradeaction.4.fleetflag.1
 						set_fleet_flag = trader_in_transit
-						fleet_event = { id = t_pirate.1 days = 1 }
+						#fleet_event = { id = t_pirate.1 days = 1 }
 						set_event_locked = no
 						set_owner = event_target:trader_country
 					}
