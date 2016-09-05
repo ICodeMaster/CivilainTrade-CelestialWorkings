@@ -43,14 +43,11 @@ trade_station_1 = {
 	planet_modifier = {
 		planet_border_mult = 0.1
 		planet_migration_all_pull = 0.5
+	}
+	modifier = {
 		spaceport_ship_build_time_mult = 0.1
 	}
 	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			from = { sector_controlled = yes }
-		}
 		modifier = {
 			factor = 0
 			from = { NOT = { has_spaceport_module = solar_panel_network } }
@@ -75,19 +72,16 @@ trade_station_2 = {
 		#energy = 17
 		#minerals = 15
 	}
+		
 	planet_modifier = {
 		planet_border_mult = 0.6
 		planet_migration_all_pull = 0.5
+	}
+	modifier = {
 		spaceport_ship_build_time_mult = 0.1
 	}
 	
-	
 	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			from = { sector_controlled = yes }
-		}
 		modifier = {
 			factor = 0
 			from = { NOT = { has_spaceport_module = solar_panel_network } }
@@ -100,7 +94,7 @@ trade_station_3 = {
 	section = "HANGARBAY_SPACEPORT_SECTION"
 	construction_days = 360
 	prerequisites = { "tech_trading_module_3" }
-	spaceport_level = 1
+	spaceport_level = 3
 	
 	cost = {
 		minerals = 780
@@ -116,11 +110,12 @@ trade_station_3 = {
 	planet_modifier = {
 		planet_border_mult = 1.1
 		planet_migration_all_pull = 0.5
-		spaceport_ship_build_time_mult = 0.1
 	}
 	
+	modifier = {
+		spaceport_ship_build_time_mult = 0.1
+	}
 	ai_weight = {
-		weight = 10
 		modifier = {
 			factor = 0
 			from = { sector_controlled = yes }
@@ -137,7 +132,7 @@ trade_station_4 = {
 	section = "HANGARBAY_SPACEPORT_SECTION"
 	construction_days = 360
 	prerequisites = { "tech_trading_module_4" }
-	spaceport_level = 1
+	spaceport_level = 4
 	
 	cost = {
 		minerals = 1000
@@ -153,15 +148,12 @@ trade_station_4 = {
 	planet_modifier = {
 		planet_border_mult = 1.6
 		planet_migration_all_pull = 0.5
+	}
+	modifier = {
 		spaceport_ship_build_time_mult = 0.1
 	}
 	
 	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			from = { sector_controlled = yes }
-		}
 		modifier = {
 			factor = 0
 			from = { NOT = { has_spaceport_module = solar_panel_network } }
@@ -189,15 +181,12 @@ trade_station_5 = {
 	planet_modifier = {
 		planet_border_mult = 2.5
 		planet_migration_all_pull = 0.5
+	}
+	modifier = {
 		spaceport_ship_build_time_mult = 0.1
 	}
 	
 	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			from = { sector_controlled = yes }
-		}
 		modifier = {
 			factor = 0
 			from = { NOT = { has_spaceport_module = solar_panel_network } }

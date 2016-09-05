@@ -17,3 +17,23 @@ tier_1_delievery_mod = {
 	tile_resource_minerals_mult = 0.5
 	tile_resource_energy_mult = 0.5
 }
+
+trading_barge_modifier = {
+	ship_armor_add = 10
+	ship_hitpoints_add = 3000
+}
+
+military_rallied = {
+	navy_size_add = -10
+	navy_size_mult = -0.15
+}
+
+rallied_traders = {
+	damage_vs_country_type_piratetrader_mult = 0.3
+	ship_auto_repair_add = 0.2
+	ship_hitpoints_mult = 0.15
+}
+
+trading_unrest = {
+	pop_happiness = -0.12
+}

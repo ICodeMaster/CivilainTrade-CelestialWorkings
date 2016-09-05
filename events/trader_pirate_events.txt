@@ -12,13 +12,17 @@ fleet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 		trigger = {
-			SPACE_OWNER = {
+			SOLAR_SYSTEM = {
+				OWNER = {
 				NOT = {
-					has_country_flag = pirate_attacks_t1
-					has_country_flag = pirate_attacks_t2
-					has_country_flag = pirate_attacks_t3
-					has_country_flag = pirate_attacks_t4
-					has_country_flag = pirate_attacks_t5
+					OR = {
+						has_country_flag = pirate_attacks_t1
+						has_country_flag = pirate_attacks_t2
+						has_country_flag = pirate_attacks_t3
+						has_country_flag = pirate_attacks_t4
+						has_country_flag = pirate_attacks_t5
+					}
+				}
 				}
 			}
 		}
@@ -30,7 +34,7 @@ fleet_event = {
 			save_global_event_target_as = raider_country
 		}
 		random = {
-			chance = 15
+			chance = 11
 			create_fleet = {
 				name = "Caravan Raiders"
 			}
@@ -40,6 +44,85 @@ fleet_event = {
 				set_aggro_range_measure_from = self
 				set_aggro_range = 700
 				set_formation_scale = 7
+				create_ship = {
+						name = "Raider"
+						design = Hunter
+						graphical_culture = "pirate_01"
+					}
+				create_ship = {
+						name = "Raider"
+						design = Hunter
+						graphical_culture = "pirate_01"
+					}
+				create_ship = {
+						name = "Raider"
+						design = Hunter
+						graphical_culture = "pirate_01"
+					}
+				random = {
+					chance = 50
+					create_ship = {
+						name = "Raider"
+						design = Hunter
+						graphical_culture = "pirate_01"
+					}
+				}
+				random = {
+					chance = 50
+					create_ship = {
+						name = "Raider"
+						design = Hunter
+						graphical_culture = "pirate_01"
+					}
+				}
+				if = {
+					limit = {ROOT = {has_fleet_flag = tier_2}}
+					random_list = {
+						50 = {
+							create_ship = {
+						name = "Raider"
+						design = Hunter
+						graphical_culture = "pirate_01"
+						}
+						create_ship = {
+						name = "Raider"
+						design = Hunter
+						graphical_culture = "pirate_01"
+						}
+						create_ship = {
+						name = "Raider"
+						design = Hunter
+						graphical_culture = "pirate_01"
+						}
+						}
+						35 = {
+							create_ship = {
+							name = "Raider"
+							design = Hunter
+							graphical_culture = "pirate_01"
+							}
+							create_ship = {
+							name = "Raider"
+							design = Hunter
+							graphical_culture = "pirate_01"
+							}
+						}
+						15 = {
+							create_ship = {
+							name = "Raider"
+							design = Hunter
+							graphical_culture = "pirate_01"
+							}
+							create_ship = {
+							name = "Raider"
+							design = Hunter
+							graphical_culture = "pirate_01"
+							}
+						}
+					
+					}
+					
+				}
 				FROM = {
 				SOLAR_SYSTEM = {
 					random_neighbor_system = {
@@ -49,76 +132,17 @@ fleet_event = {
 					}
 				}
 				}
-				create_ship = {
-						name = "Raider"
-						design = t_1_raider
+			}
+			last_created_fleet = { fleet_event = { id = t_pirate.10 days = 1 }}
+			set_fleet_flag = hunted
+			SOLAR_SYSTEM = {
+				OWNER = {
+					set_timed_country_flag = { 
+						flag = pirate_attacks_t1 
+						days = 150
 					}
-				create_ship = {
-						name = "Raider"
-						design = t_1_raider
-					}
-				create_ship = {
-						name = "Raider"
-						design = t_1_raider
-					}
-				random = {
-					chance = 50
-					create_ship = {
-						name = "Raider"
-						design = t_1_raider
-					}
-				}
-				random = {
-					chance = 50
-					create_ship = {
-						name = "Raider"
-						design = t_1_raider
-					}
-				}
-				if = {
-					limit = {ROOT = {has_fleet_flag = tier_2}}
-					random_list = {
-						50 = {
-							create_ship = {
-						name = "Raider"
-						design = t_1_raider
-						}
-						create_ship = {
-						name = "Raider"
-						design = t_1_raider
-						}
-						create_ship = {
-						name = "Raider"
-						design = t_1_raider
-						}
-						}
-						35 = {
-							create_ship = {
-							name = "Raider"
-							design = t_1_raider_d
-							}
-							create_ship = {
-							name = "Raider"
-							design = t_1_raider
-							}
-						}
-						15 = {
-							create_ship = {
-							name = "Raider"
-							design = t_1_raider_d
-							}
-							create_ship = {
-							name = "Raider"
-							design = t_1_raider_d
-							}
-						}
-					
-					}
-					
 				}
 			}
-			last_created_fleet = {fleet_event = { id = t_pirate.10 days = 2 random = 2 }}
-			set_fleet_flag = hunted
 		}
 	}
 }
@@ -131,9 +155,7 @@ fleet_event = {
 		SOLAR_SYSTEM = {
 			random_neighbor_system = {
 				limit = {
-					space_owner = {
-						is_same_empire = solar_system.space_owner
-					}
+					is_inside_border = solar_system.owner
 				}
 				save_event_target_as = hunted_fleet_system
 			}

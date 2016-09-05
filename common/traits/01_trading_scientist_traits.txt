@@ -46,7 +46,6 @@ leader_trait_expertise_good_trading = {
 	
 	ai_categories = {
 		society
-		engineering
 	}
 	
 	ai_weight = {
