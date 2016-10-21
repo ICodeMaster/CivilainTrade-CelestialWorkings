@@ -1,0 +1,163 @@
+#################################
+#
+# Trader Events
+# by ICodeMaster
+#
+#################################
+
+namespace = tradeupdates
+
+##Counts Fleets
+country_event = {
+	id = tradeupdates.00
+	hide_window = yes
+	mean_time_to_happen = {
+		months = 3
+	}
+	trigger = {
+		any_owned_planet = {
+			has_spaceport = yes
+			has_spaceport_module = "spaceport_trading_platform"
+			has_building = "trading_market"
+		}
+	}
+	immediate = {
+		ruler = {
+			set_variable = {
+				which = fleets_needed
+				value = 0
+			}
+		}
+		random_country = {
+			limit = {
+				has_relation_flag = {
+					who = ROOT
+					flag = TradingGuild
+				}
+			}
+			save_event_target_as = trading_guild
+		}
+		random_owned_planet = {
+			save_event_target_as = target_planet
+		}
+		every_owned_planet = {
+			limit = {
+				has_spaceport = yes
+				has_spaceport_module = "spaceport_trading_platform"
+			}
+			ruler = {
+				change_variable = {
+					which = fleets_needed
+					value = 1
+				}	
+			}
+		}
+		event_target:trading_guild = {
+			every_owned_fleet = {
+				prevprev = {
+					ruler = {
+						change_variable = {
+							which = fleets_needed 
+							value = -1
+						}
+					}
+				}
+			}
+		}
+	}
+}
+### Adds Escorts
+fleet_event = {
+	id = tradeupdates.01
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_owned_ship = {
+			limit = {
+				is_ship_size = civilian_tanker
+				is_ship_size = civilian_freighter
+				NOT = {
+					has_ship_flag = modified
+				}
+			}
+			add_modifier = {
+				modifier = trading_barge_modifier
+				days = -1
+			}
+			set_ship_flag = modified
+		}
+		if = {
+			limit = {
+				check_variable = {
+					which = escort_count
+					value > 2
+				}
+			}
+			create_ship = {
+				name = "Protector"
+				design = Protector
+			}
+		}
+		if = {
+			limit = {
+				check_variable = {
+					which = escort_count
+					value > 1
+				}
+			}
+			create_ship = {
+				name = "Protector"
+				design = Protector
+			}
+		}
+		if = {
+			limit = {
+				check_variable = {
+					which = escort_count
+					value > 0
+				}
+			}
+			create_ship = {
+				name = "Protector"
+				design = Protector
+			}
+		}
+	}
+}
+## Reasource redistribution
+planet_event = {
+	id = tradeupdates.10
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random_tile = {
+			limit = {
+				has_building = "trading_market" 
+			}
+			add_resource = {
+				resource = energy
+				amount = -1
+				replace = no
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = tradeupdates.11
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random_tile = {
+			limit = {
+				has_building = "trading_market" 
+			}
+			add_resource = {
+				resource = minerals
+				amount = -1
+				replace = no
+			}
+		}
+	}
+}

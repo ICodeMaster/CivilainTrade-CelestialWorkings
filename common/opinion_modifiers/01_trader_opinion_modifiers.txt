@@ -24,3 +24,8 @@ opinion_trader_expedition_forgone = {
 	}
 }
 
+opinion_trader_guild = {
+	opinion = {
+		base = 100
+	}
+}

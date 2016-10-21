@@ -23,11 +23,11 @@
 #	ai_weight = { weight = 0 }
 #}
 ####### TIER 1 ############
-trade_station_1 = {
+spaceport_trading_platform = {
 	icon = "GFX_spaceport_module_dark_matter_factory"
 	section = "HANGARBAY_SPACEPORT_SECTION"
 	construction_days = 360
-	prerequisites = { "tech_trading_module_1" }
+	prerequisites = { "tech_trading_1" }
 	spaceport_level = 1
 	
 	cost = {
@@ -37,15 +37,13 @@ trade_station_1 = {
 	produced_resources = {
 		engineering_research = 1
 		society_research = 1
-		#energy = 3
-		#minerals = 6
 	}
 	planet_modifier = {
 		planet_border_mult = 0.1
 		planet_migration_all_pull = 0.05
 	}
 	modifier = {
-		spaceport_ship_build_time_mult = 0.1
+		spaceport_ship_build_time_mult = 0.25
 	}
 	ai_weight = {
 		weight = 10
@@ -60,166 +58,3 @@ trade_station_1 = {
 		}
 	}
 }
-########### TIER 2 ############
-trade_station_2 = {
-	icon = "GFX_spaceport_module_dark_matter_factory"
-	section = "HANGARBAY_SPACEPORT_SECTION"
-	construction_days = 360
-	prerequisites = { "tech_trading_module_2" }
-	spaceport_level = 2
-	
-	cost = {
-		minerals = 500
-	}
-	
-	produced_resources = {
-		engineering_research = 3
-		society_research = 3
-		#energy = 17
-		#minerals = 15
-	}
-		
-	planet_modifier = {
-		planet_border_mult = 0.15
-		planet_migration_all_pull = 0.05
-	}
-	modifier = {
-		spaceport_ship_build_time_mult = 0.1
-	}
-	
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 1000
-			owner = {
-				OR = {
-					has_ethic = ethic_capitalist
-					has_ethic = ethic_fanatic_capitalist
-				}
-			}
-		}
-	}
-}
-######### TIER 3 ################
-trade_station_3 = {
-	icon = "GFX_spaceport_module_dark_matter_factory"
-	section = "HANGARBAY_SPACEPORT_SECTION"
-	construction_days = 360
-	prerequisites = { "tech_trading_module_3" }
-	spaceport_level = 3
-	
-	cost = {
-		minerals = 780
-	}
-	
-	produced_resources = {
-		engineering_research = 5
-		society_research = 5
-		#energy = 26
-		#minerals = 23
-	}
-	
-	planet_modifier = {
-		planet_border_mult = 0.2
-		planet_migration_all_pull = 0.05
-	}
-	
-	modifier = {
-		spaceport_ship_build_time_mult = 0.1
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 1000
-			owner = {
-				OR = {
-					has_ethic = ethic_capitalist
-					has_ethic = ethic_fanatic_capitalist
-				}
-			}
-		}
-	}
-}
-######### TIER 4 #############
-trade_station_4 = {
-	icon = "GFX_spaceport_module_dark_matter_factory"
-	section = "HANGARBAY_SPACEPORT_SECTION"
-	construction_days = 360
-	prerequisites = { "tech_trading_module_4" }
-	spaceport_level = 4
-	
-	cost = {
-		minerals = 1000
-	}
-	
-	produced_resources = {
-		engineering_research = 7
-		society_research = 7
-		#energy = 35
-		#minerals = 30
-	}
-	
-	planet_modifier = {
-		planet_border_mult = 0.25
-		planet_migration_all_pull = 0.05
-	}
-	modifier = {
-		spaceport_ship_build_time_mult = 0.1
-	}
-	
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 1000
-			owner = {
-				OR = {
-					has_ethic = ethic_capitalist
-					has_ethic = ethic_fanatic_capitalist
-				}
-			}
-		}
-	}
-}
-########## TIER 5 ####################
-trade_station_5 = {
-	icon = "GFX_spaceport_module_dark_matter_factory"
-	section = "HANGARBAY_SPACEPORT_SECTION"
-	construction_days = 360
-	prerequisites = { "tech_trading_module_5" }
-	spaceport_level = 5
-	
-	cost = {
-		minerals = 1150
-	}
-	
-	produced_resources = {
-		engineering_research = 10
-		society_research = 10
-		#energy = 56
-		#minerals = 40
-	}
-	planet_modifier = {
-		planet_border_mult = 0.3
-		planet_migration_all_pull = 0.05
-	}
-	modifier = {
-		spaceport_ship_build_time_mult = 0.1
-	}
-	
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 1000
-			owner = {
-				OR = {
-					has_ethic = ethic_capitalist
-					has_ethic = ethic_fanatic_capitalist
-				}
-			}
-		}
-	}
-}
-#################
-#### LEVEL 7 ####
-#################
-

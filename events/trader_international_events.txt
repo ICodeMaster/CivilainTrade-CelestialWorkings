@@ -38,10 +38,10 @@ country_event = {
 			NOT = { is_at_war_with = ROOT }
 			is_country_type = default
 			any_owned_planet = {
-				#OR = {
-				#		has_spaceport_module = trade_station_4
-				#		has_spaceport_module = trade_station_5
-				#}
+				OR = {
+						has_spaceport_module = trade_station_4
+						has_spaceport_module = trade_station_5
+				}
 			}
 			has_established_contact = ROOT
 			NOT = {
@@ -66,10 +66,10 @@ country_event = {
 					NOT = { is_at_war_with = ROOT }
 					is_country_type = default
 					any_owned_planet = {
-						#OR = {
-						#		has_spaceport_module = trade_station_4
-						#		has_spaceport_module = trade_station_5
-						#}
+						OR = {
+								has_spaceport_module = trade_station_4
+								has_spaceport_module = trade_station_5
+						}
 					}
 					has_established_contact = ROOT
 					NOT = {

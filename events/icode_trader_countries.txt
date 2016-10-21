@@ -1,0 +1,84 @@
+#################################
+#
+# Trader Events
+# by ICodeMaster
+#
+#################################
+
+
+namespace = tradecountries
+event = {
+	id = tradecountries.010
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+
+	}
+	immediate = {
+		every_country = {
+			limit = {
+				any_owned_planet = {
+					OR = {
+						has_building = "trading_market"
+					}
+				}
+			}
+			country_event = { id = tradecountries.01 days = 1 }
+		}
+	}
+}
+
+country_event = {
+	id = tradecountries.01
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = {
+			has_country_flag = has_trader
+		}
+	}
+	immediate = {
+		set_country_flag = has_trader
+		create_country = {
+				name = tradercountry.name.1
+				type = tradercountry
+				species = ROOT
+				auto_delete = no
+				government = "democratic_utopia"
+				flag = {
+					icon = {
+						category = "spherical"
+						file = "flag_spherical_8.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "circle.dds"
+					}
+					colors={
+						"purple"
+						"indigo"
+						"null"
+						"null"
+					}
+				}
+			}
+			last_created_country = {
+				set_relation_flag = {
+					who = ROOT 
+					flag = TradingGuild
+				}
+			}
+			set_relation_flag = {
+				who = last_created_country
+				flag = RootCountry
+			}
+			every_country = {
+				limit = {
+					is_country_type = default
+					has_communications = ROOT
+				}
+				establish_communications_no_message = last_created_country
+			}
+	}
+}

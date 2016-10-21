@@ -1,4 +1,8 @@
 ﻿l_english:
+    tradercountry.name.1:0 "[Root.GetName] Trading Guild"
+    
+    tradeship.name.1:0 "[Owner.GetName] Freighter"
+    tradeship.name.2:0 "[Owner.GetName] Tanker"
     
     trading_market:0 "Trading Marketplace"
     trading_market_desc:0 "The marketplace where trading fleets deposite thier wares."
@@ -6,17 +10,9 @@
     edict_trader_lite:0 "Civilian Trading Mode: Lite"
     edict_trader_lite_desc:0 "Simulate Trading with events instead of ships."
     
-    sm_trade_station_1:0 "Level 1 Trading Platform"
-    sm_trade_station_2:0 "Level 2 Trading Platform"
-    sm_trade_station_3:0 "Level 3 Trading Platform"
-    sm_trade_station_4:0 "Level 4 Trading Platform"
-    sm_trade_station_5:0 "Level 5 Trading Platform"
+    sm_spaceport_trading_platform:0 "Trading Platform"
     
-    sm_trade_station_1_desc:0 "Spawns Level 1 trading fleets that generate bonus revenue."
-    sm_trade_station_2_desc:0 "Spawns Level 2 trading fleets that generate bonus revenue."
-    sm_trade_station_3_desc:0 "Spawns Level 3 trading fleets that generate bonus revenue."
-    sm_trade_station_4_desc:0 "Spawns Level 4 trading fleets that generate bonus revenue."
-    sm_trade_station_5_desc:0 "Spawns Level 5 trading fleets that generate bonus revenue."
+    sm_spaceport_trading_platform_desc:0 "Spawns Trading Fleets to generate revenue."
     
     good_trading:0 "Economist"
     good_trading_desc:0 "Knowledge of standard trade pratices"
@@ -46,5 +42,5 @@
     trader_international.10.b:0 "Allow them to trade with reduced reward, and risk."
     trader_international.10.c:0 "Disallow this trading, but reduce relations."
     
-    requires_trade_station:0 "Requires a trading platform in orbit."
+    requires_trade_station:0 "Requires a §Y Trading Platform §! in orbit."
     

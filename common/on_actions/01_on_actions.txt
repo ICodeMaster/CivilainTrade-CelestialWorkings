@@ -1,14 +1,20 @@
 # No scope, like on_game_start
 on_yearly_pulse = {
 	events = {
-		tradeaction.02
-		trader_international.1
+		#tradeaction.02
+		#trader_international.1
 	}
 }
 on_press_begin = {
 	events = {
-		tradeaction.00
-		tradeaction.01
+		#tradeaction.00
+		#tradeaction.01
+	}
+}
+## Initalize Country Guild
+on_building_complete = {
+	events = {
+		tradecountries.010
 	}
 }
 # This = owner of ship 1 (destroyed)
