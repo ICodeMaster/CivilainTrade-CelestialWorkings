@@ -22,7 +22,7 @@
 #	}
 #	ai_weight = { weight = 0 }
 #}
-####### TIER 1 ############
+####### Trading Platform ##########
 spaceport_trading_platform = {
 	icon = "GFX_spaceport_module_dark_matter_factory"
 	section = "HANGARBAY_SPACEPORT_SECTION"
@@ -49,11 +49,96 @@ spaceport_trading_platform = {
 		weight = 10
 		modifier = {
 			factor = 1000
-			owner = {
-				OR = {
-					has_ethic = ethic_capitalist
-					has_ethic = ethic_fanatic_capitalist
-				}
+			OR = {
+				has_ethic = ethic_capitalist
+				has_ethic = ethic_fanatic_capitalist
+			}
+		}
+	}
+}
+####### OUTPUT UPGRADES
+spaceport_output_upgrade_1 = {
+	icon = "GFX_spaceport_module_dark_matter_factory"
+	section = "HANGARBAY_SPACEPORT_SECTION"
+	construction_days = 360
+	prerequisites = { "tech_trading_1" }
+	spaceport_level = 2
+	
+	cost = {
+		minerals = 360
+	}
+	potential = {
+		has_spaceport_module = "spaceport_trading_platform"
+	}
+	produced_resources = {
+		engineering_research = 1
+		society_research = 1
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 1000
+			OR = {
+				has_ethic = ethic_capitalist
+				has_ethic = ethic_fanatic_capitalist
+			}
+		}
+	}
+}
+### DOCK UPGRADES
+spaceport_dock_upgrade_1 = {
+	icon = "GFX_spaceport_module_dark_matter_factory"
+	section = "HANGARBAY_SPACEPORT_SECTION"
+	construction_days = 360
+	prerequisites = { "tech_trading_1" }
+	spaceport_level = 2
+	
+	cost = {
+		minerals = 360
+	}
+	potential = {
+		has_spaceport_module = "spaceport_trading_platform"
+	}
+	produced_resources = {
+		engineering_research = 1
+		society_research = 1
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 1000
+			OR = {
+				has_ethic = ethic_capitalist
+				has_ethic = ethic_fanatic_capitalist
+			}
+		}
+	}
+}
+
+spaceport_inter_upgrade = {
+	icon = "GFX_spaceport_module_dark_matter_factory"
+	section = "HANGARBAY_SPACEPORT_SECTION"
+	construction_days = 360
+	prerequisites = { "tech_trading_1" }
+	spaceport_level = 2
+	
+	cost = {
+		minerals = 360
+	}
+	potential = {
+		has_spaceport_module = "spaceport_trading_platform"
+	}
+	produced_resources = {
+		engineering_research = 1
+		society_research = 1
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 1000
+			OR = {
+				has_ethic = ethic_capitalist
+				has_ethic = ethic_fanatic_capitalist
 			}
 		}
 	}

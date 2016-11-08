@@ -4,7 +4,7 @@
 # by ICodeMaster
 #
 #################################
-
+##removeResource REPLACE
 namespace = tradelogic
 
 ## Spawn Fleets
@@ -27,6 +27,10 @@ country_event = {
 					which = fleets_needed 
 					value > 0 
 				}
+			}
+			check_variable = {
+				which = bays
+				value > 0
 			}
 			has_country_flag = has_trader
 		}
@@ -56,13 +60,13 @@ country_event = {
 			random_list = {
 				50 = {
 					create_ship = {
-						design = "C1"
+						design = "Diaspora"
 						name = tradeship.name.1
 					}
 				}
 				50 = {
 					create_ship = {
-						design = "C2"
+						design = "Diaspora"
 						name = tradeship.name.2
 					}
 				}
@@ -82,14 +86,27 @@ country_event = {
 			set_location = event_target:launching_planet
 			set_variable = {
 				which = delivery_energy
-				value = 100
+				value = 17
 			}
 			set_variable = {
 				which = delivery_minerals
-				value = 100
+				value = 17
 			}
-			##fleet_event = { id = tradelogic.01 days = 5 }
-			fleet_event = { id = tradeupdates.00 days = 1 }
+			if = {
+				limit = {
+					has_building = "spaceport_output_upgrade_1"
+				}
+				change_variable = {
+					which = delivery_minerals
+					value = 10
+				}
+				change_variable = {
+					which = delivery_energy
+					value = 10
+				}
+			}
+			fleet_event = { id = tradelogic.01 days = 5 }
+			#fleet_event = { id = tradeupdates.00 days = 1 }
 		}
 		ruler = {
 			change_variable = {
@@ -99,6 +116,8 @@ country_event = {
 		}
 	}	
 }
+
+###Move Logic
 fleet_event = {
 	id = tradelogic.01
 	hide_window = yes 
@@ -106,7 +125,7 @@ fleet_event = {
 		months = 6
 	}
 	trigger = {
-		has_fleet_order = no
+		NOT = { has_fleet_flag = in_transit }
 	}
 	immediate = {
 		SOLAR_SYSTEM = {
@@ -119,107 +138,181 @@ fleet_event = {
 					flag = RootCountry
 				}
 			}
-			save_event_target_as = targetcountry
-		}
-		event_target:targetcountry = {
-			random_owned_planet = {
+			if = {
 				limit = {
-					has_spaceport = yes 
-					has_spaceport_module = "spaceport_trading_platform"
-					has_building = "trading_market"
-					NOT = {
-						SOLAR_SYSTEM = event_target:starting_star
-					}
-					#check_variable = {
-					#	which = bays
-					#	value > 0
-					#}
+					exists = this
 				}
-				save_event_target_as = target_planet
-				#change_variable = {
-				#	which = bays
-				#	value = -1
-				#}
+				save_event_target_as = targetcountry
 			}
 		}
-		queue_actions = {
-			### Move to Location
-			move_to = event_target:target_planet
-			wait = 10
-			##### Unload Resources
-			effect = {
-				id = tradelogic.1.delivery
-				while = {
-					limit = {
-						ROOT = {
-							check_variable = {
-								which = delivery_energy
-								value > 0
-							}
-						}
-					}
-					event_target:target_planet = {
-						random_tile = {
-							limit = {
-								has_building = "trading_market" 
-							}
-							add_resource = {
-								resource = energy
-								amount = 1
-								replace = no
-							}
-						}
-						planet_event = { id = tradeupdates.10 days = 50 }
+		random_owned_planet = {
+			limit = {
+				has_spaceport = yes 
+				has_spaceport_module = "spaceport_trading_platform"
+				has_building = "trading_market"
+				NOT = {
+					SOLAR_SYSTEM = {
+						is_same_value = event_target:starting_star
 					}
 				}
-				while = {
-					limit = {
-						ROOT = {
-							check_variable = {
-								which = delivery_minerals
-								value > 0
-							}
-						}
-					}
-					event_target:target_planet = {
-						random_tile = {
-							limit = {
-								has_building = "trading_market" 
-							}
-							add_resource = {
-								resource = minerals
-								amount = 1
-								replace = no
-							}
-						}
-						planet_event = { id = tradeupdates.11 days = 50 }
-					}
+				check_variable = {
+					which = bays
+					value > 0
 				}
 			}
-			wait = 10
-			####### Loading Resources
-			effect = {
-				id = tradelogic.1.reload
-				set_variable = {
-					which = delivery_energy
-					value = 50
-				}
-				set_variable = {
-					which = delivery_minerals
-					value = 50
-				}
+			save_event_target_as = target_planet
+			change_variable = {
+				which = bays
+				value = -1
 			}
-			wait = 5
-			effect = {
-				id = tradelogic.1.depart
-				fleet_event = { id = tradelogic.01 days = 3 }
-				event_target:target_planet = {
-					change_variable = {
-						which = bays
-						value = 1
+		}
+		if = {
+			limit = {
+				exists = event_target:target_planet
+			}
+			set_fleet_flag = in_transit
+			queue_actions = {
+				### Move to Location
+				move_to = event_target:target_planet
+				wait = 10
+				##### Unload Resources
+				effect = {
+					id = tradelogic.1.delivery
+					#### Base Energy Unload
+					if = {
+						limit = {
+							ROOT = {
+								check_variable = {
+									which = delivery_energy
+									value = 17
+								}
+							}
+						}
+						event_target:target_planet = {
+							random_tile = {
+								limit = {
+									has_building = "trading_market"
+								}
+								add_resource = {
+									resource = energy
+									amount = 17
+								}
+								planet_event = { id = tradeupdates.10 days = 270 } 
+							}
+						}
+					}
+					### Base Mineral Unload
+					if = {
+						limit = {
+							ROOT = {
+								check_variable = {
+									which = delivery_minerals
+									value = 17
+								}
+							}
+						}
+						event_target:target_planet = {
+							random_tile = {
+								limit = {
+									has_building = "trading_market"
+								}
+								add_resource = {
+									resource = minerals
+									amount = 17
+								}
+							planet_event = { id = tradeupdates.11 days = 270 } 
+							}
+						}
+					}
+					### Enhanced Energy 1
+					if = {
+						limit = {
+							ROOT = {
+								check_variable = {
+									which = delivery_energy
+									value = 27
+								}
+							}
+						}
+						event_target:target_planet = {
+							random_tile = {
+								limit = {
+									has_building = "trading_market"
+								}
+								add_resource = {
+									resource = energy
+									amount = 27
+								}
+								planet_event = { id = tradeupdates.12 days = 270 } 
+							}
+						}
+					}
+					### Enhanced Mineral 1
+					if = {
+						limit = {
+							ROOT = {
+								check_variable = {
+									which = delivery_minerals
+									value = 27
+								}
+							}
+						}
+						event_target:target_planet = {
+							random_tile = {
+								limit = {
+									has_building = "trading_market"
+								}
+								add_resource = {
+									resource = minerals
+									amount = 27
+								}
+							planet_event = { id = tradeupdates.13 days = 270 } 
+							}
+						}
+					}
+				}
+				wait = 10
+				####### Loading Resources
+				effect = {
+					id = tradelogic.1.reload
+					set_variable = {
+						which = delivery_energy
+						value = 17
+					}
+					set_variable = {
+						which = delivery_minerals
+						value = 17
+					}
+					if = {
+						limit = {
+							event_target:target_planet = {
+								has_building = "spaceport_output_upgrade_1"
+							}
+						}
+						change_variable = {
+							which = delivery_minerals
+							value = 10
+						}
+						change_variable = {
+							which = delivery_energy
+							value = 10
+						}
+					}
+				}
+				wait = 5
+				effect = {
+					id = tradelogic.1.depart
+					remove_fleet_flag = in_transit
+					fleet_event = { id = tradelogic.01 days = 3 }
+					event_target:target_planet = {
+						change_variable = {
+							which = bays
+							value = 1
+						}
 					}
 				}
 			}
 		}
 	}
 }
+

@@ -25,7 +25,7 @@ country_event = {
 		ruler = {
 			set_variable = {
 				which = fleets_needed
-				value = 0
+				value = -1
 			}
 		}
 		random_country = {
@@ -51,6 +51,38 @@ country_event = {
 					value = 1
 				}	
 			}
+			if = {
+				limit = {
+					has_building = "spaceport_dock_upgrade_1"
+				}
+				ruler = {
+					change_variable = {
+					which = fleets_needed
+					value = 1
+					}	
+				}
+				
+			}
+			if = {
+				limit = {
+					NOT = { has_planet_flag = spaceport_trading_platform_bay }
+				}
+				set_planet_flag = spaceport_trading_platform_bay
+				set_variable = {
+					which = bays
+					value = 2
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_planet_flag = spaceport_dock_upgrade_bay }
+				}
+				set_planet_flag = spaceport_dock_upgrade_bay
+				change_variable = {
+					which = bays
+					value = 2
+				}
+			}
 		}
 		event_target:trading_guild = {
 			every_owned_fleet = {
@@ -73,19 +105,18 @@ fleet_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		every_owned_ship = {
+		every_ship = {
 			limit = {
 				is_ship_size = civilian_tanker
 				is_ship_size = civilian_freighter
 				NOT = {
-					has_ship_flag = modified
+					has_modifier = "trading_barge_modifier"
 				}
 			}
 			add_modifier = {
 				modifier = trading_barge_modifier
 				days = -1
 			}
-			set_ship_flag = modified
 		}
 		if = {
 			limit = {
@@ -137,7 +168,25 @@ planet_event = {
 			}
 			add_resource = {
 				resource = energy
-				amount = -1
+				amount = -17
+				replace = no
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = tradeupdates.12
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random_tile = {
+			limit = {
+				has_building = "trading_market" 
+			}
+			add_resource = {
+				resource = energy
+				amount = -27
 				replace = no
 			}
 		}
@@ -155,7 +204,7 @@ planet_event = {
 			}
 			add_resource = {
 				resource = minerals
-				amount = -1
+				amount = -17
 				replace = no
 			}
 		}

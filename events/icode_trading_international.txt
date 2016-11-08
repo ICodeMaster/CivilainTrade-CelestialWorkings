@@ -1,0 +1,324 @@
+#################################
+#
+# Trader Events
+# by ICodeMaster
+#
+#################################
+
+namespace = tradeinternational
+
+event = {
+	id = tradeinternational.1
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_country = {
+			limit = {
+				AND = {
+					any_owned_planet = {
+						OR = {
+							has_spaceport_module = spaceport_inter_upgrade
+						}
+					}
+				}
+				
+			}
+			if = {
+				limit = {
+					is_ai = no
+				}
+				country_event = { id = tradeinternational.10 days = 5 random = 300 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = tradeinternational.10
+	is_triggered_only = yes
+	title = "tradeinternational.10.name"
+	desc = "tradeinternational.10.desc"
+	picture = GFX_tradeinternational_1
+	trigger = {
+		AND = {
+			NOT = { is_at_war_with = ROOT }
+			is_country_type = default
+			any_owned_planet = {
+				OR = {
+						has_spaceport_module = spaceport_inter_upgrade
+				}
+			}
+			has_established_contact = ROOT
+			NOT = {
+				is_same_empire = ROOT
+			}
+		}
+	}
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				OR = {
+					has_spaceport_module = spaceport_inter_upgrade
+				}
+			}
+			save_global_event_target_as = starting_planet
+		}
+		random_country = {
+			limit = {
+				AND = {
+				#	has_edict = international_trade
+					NOT = { is_at_war_with = ROOT }
+					is_country_type = default
+					any_owned_planet = {
+						OR = {
+							has_spaceport_module = spaceport_inter_upgrade
+						}
+					}
+					has_established_contact = ROOT
+					NOT = {
+						is_same_empire = ROOT
+					}
+				}
+			}
+			random_owned_planet = {
+				limit = {
+					OR = {
+						has_spaceport_module = spaceport_inter_upgrade
+					}
+				}
+				save_global_event_target_as = destination_planet
+			}
+			save_event_target_as = international_destination
+		}
+		random_country = {
+			limit = {
+				has_relation_flag = {
+					who = ROOT
+					flag = TradingGuild
+				}
+			}
+			save_event_target_as = trading_guild
+		}
+		create_fleet = { Name = "Expedition Caravan" }
+		last_created_fleet = {
+			set_owner = event_target:trading_guild
+			create_ship = {
+				name = "Trading Barge"
+				design = "Diaspora"
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+				name = "Trading Barge"
+				design = "Diaspora"
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+				name = "Trading Barge"
+				design = "Diaspora"
+			}
+			create_ship = {
+				name = "Trading Barge"
+				design = "Diaspora"
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+				name = "Trading Barge"
+				design = "Diaspora"
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			create_ship = {
+					name = "Protector"
+					design = Protector
+			}
+			set_location = event_target:starting_planet
+			set_formation_scale = 5
+			set_fleet_stance = passive
+			#fleet_event = { id = tradeinternational.50 days = 1 }
+			fleet_event = { id = tradeinternational.15 days = 1 }
+		}
+	}
+	
+	option = {
+		name = trade_rally
+		custom_tooltip = "tradeinternational.10.a"
+		add_modifier = {
+			modifier = "military_rallied"
+			days = 160
+		}
+		hidden_effect = {
+			last_created_fleet = {
+				add_modifier = {
+					modifier = "rallied_traders"
+					days = -1
+				}
+				create_ship = {
+					name = "Protector"
+					design = Protector
+				}
+				create_ship = {
+					name = "Protector"
+					design = Protector
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = trade_luck
+		custom_tooltip = "tradeinternational.10.b"
+		hidden_effect = { 
+			add_modifier = {
+				modifier = "trading_unrest"
+			}
+		}
+	}
+	
+	option = {
+		name = trade_no
+		custom_tooltip = "tradeinternational.10.c"
+		event_target:international_destination = { 
+			add_opinion_modifier   = {
+				who = ROOT
+				modifier = "opinion_trader_expedition_forgone"
+			}
+		}
+		hidden_effect = {
+			last_created_fleet = {
+				destroy_fleet = this
+			}
+		}
+	}
+}
+######## International Handler ###############
+fleet_event = {
+	id = tradeinternational.15 
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		event_target:starting_planet = {
+			save_event_target_as = local_starting_planet
+			clear_global_event_target = starting_planet
+		}
+		event_target:destination_planet = {
+			save_event_target_as = local_destination_planet
+			clear_global_event_target = destination_planet
+		}
+		event_target:local_destination_planet = {
+			SOLAR_SYSTEM = {
+				save_event_target_as = destination_system
+			}
+		}
+		event_target:local_starting_planet = {
+			SOLAR_SYSTEM = {
+				save_event_target_as = starting_system
+			}
+		}
+		clear_orders = yes
+		queue_actions = {
+			repeat = {
+			max_iterations = 5
+			while = {
+				id = "international_trade_trigger.1"
+				AND = {
+					event_target:destination_system = {
+						OWNER = {
+							is_at_war = no
+						}
+					}
+					event_target:local_starting_planet = {
+						OWNER = {
+							is_at_war = no
+						}
+					}
+				}
+			}
+				move_to = event_target:destination_system
+				orbit_planet = event_target:local_destination_planet
+				effect = {
+					id = "trade_international.1"
+					event_target:destination_system = {
+						OWNER = {
+							add_energy = 150
+							add_minerals = 550
+							country_event = { id = trade_international.16 days = 1 }
+						}
+					}
+				}
+				wait = 20
+				move_to = event_target:starting_system
+				orbit_planet = event_target:starting_planet
+				effect = {
+					id = "trade_international.2"
+					event_target:local_starting_planet = {
+						OWNER = {
+							add_energy = 500
+							add_minerals = 350
+							country_event = { id = trade_international.17 days = 1 }
+						}
+					}
+				}
+				wait = 10
+			}
+		}
+	}
+		
+}
+
+fleet_event = {
+	id = tradeinternational.50
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_ship = {
+			limit = {
+				AND = {
+				OR = {
+					is_ship_size = civilian_tanker
+					is_ship_size = civilian_freighter
+				}
+					fleet = {
+						is_same_value = root
+					}
+				}
+			}
+			add_modifier = {
+				modifier = trading_barge_modifier
+				days = -1
+			}
+			set_ship_flag = international_barge
+		}
+	}
+}

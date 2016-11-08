@@ -8,4 +8,4 @@ tags={
 	"Trade"
 }
 picture="celestialworkings-tradding-icon.jpg"
-supported_version="1.2.*"
+supported_version="1.3.*"
